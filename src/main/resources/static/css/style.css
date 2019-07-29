@@ -1,0 +1,31 @@
+table {
+	border-collapse: collapse;
+}
+
+table td, table th {
+	padding: 5px;
+	vertical-align: middle;
+	font-size: 0.8em;
+}
+
+table thead tr th {
+	text-transform: uppercase;
+}
+
+table tfoot tr th, table tfoot tr td {
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+table caption {
+	font-size: 1.1em;
+	fornt-weight: bold;
+	letter-spacing: -1px;
+	margin-bottom: 10px;
+	padding: 5x;
+}
+
+.td-clear
+{
+	background: #fff
+}

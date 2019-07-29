@@ -22,6 +22,8 @@
 
     <!-- sidebar styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
+    
+    <link href="/css/style.css" rel="stylesheet">
 
 
     <script src="/assets/js/ie-emulation-modes-warning.js"></script>

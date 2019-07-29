@@ -52,38 +52,44 @@
         <div class="col-lg-6">
             <h4>주관식</h4>
             <p style="margin-top: 20px;"></p>
-            <div id="quesList2">
+            <ul id="quesList2">
                 <c:forEach var="vo" items="${quesList}" varStatus="status">
                     <c:if test="${vo.type eq 2 }">
-                        <p>
-                            <input class="Qchoice" name="quesName[]" value="${vo.quesName}" qtype="${vo.type}" type="checkbox"/>
-                            &nbsp;&nbsp;&nbsp;${vo.quesName}
-        					<button class="btn btn-default quesSel" value="${vo.quesName}">선택</button>
-                        </p>
+                        <li>
+                            ${vo.quesName}
+        					<button type="button" class="btn btn-default quesSel" value="${vo.quesName}">선택</button>
+                        </li>
                     </c:if>
                 </c:forEach>
-            </div>
+            </ul>
         </div>
         <div class="col-lg-6">
             <h4>객관식</h4>
             <p style="margin-top: 20px;"></p>
-            <div id="quesList1">
+            <ul id="quesList1">
                 <c:forEach var="vo" items="${quesList}" varStatus="status">
                     <c:if test="${vo.type eq 1 }">
-                        <p>
-                            <input class="Qchoice" name="quesName[]" value="${vo.quesName}" qtype="${vo.type}" type="checkbox"/>
-                            &nbsp;&nbsp;&nbsp;${vo.quesName}
-                        </p>
+                        <li>
+                            ${vo.quesName}
+                            <button type="button" class="btn btn-default quesSel" value="${vo.quesName}">선택</button>
+                        </li>
                     </c:if>
                 </c:forEach>
-            </div>
+            </ul>
         </div>
         <div class="col-lg-12">
-        	<table boder="1">
+        	<table class="col-lg-12">
+        		<colgroup>
+        			<col class="col-lg-2">
+        			<col class="col-lg-5">
+        			<col class="col-lg-5">
+        		</colgroup>
         		<thead>
-        			<tr></tr>
-        			<tr>문제</tr>
-        			<tr>관리</tr>
+        			<tr>
+        				<th></th>
+        				<th>문제</th>
+        				<th>관리</th>
+        			</tr>
         		</thead>
         		<tbody id="quesSelTd">
         			<tr><td colspan="3" align="center">생성할 문제를 선택해주세요.</td></tr>
@@ -106,6 +112,9 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+    	$('table thead tr th').addClass('ui-state-default');
+    	$('table tbody tr td').addClass('ui-widget-content td-clear');
+    	
         var selectCate = $("#selectCate option:selected").val();
 
         //추가버튼 누를때
@@ -140,29 +149,35 @@
         					+ "<td></td>"
         					+ "<td>" + $(this).val() + "</td>"
         					+ "<td>"
-        					+ "<button class='up'>▲</button>"
-        					+ "<button class='down'>▼</button>"
-        					+ "<button class='delBtn'>삭제</button>"
+        					+ "<button type='button' class='up'>▲</button>"
+        					+ "<button type='button' class='down'>▼</button>"
+        					+ "<button type='button' class='delBtn'>삭제</button>"
         					+ "</td>"
-        					+ "<tr>";
+        					+ "</tr>";
         	if (quesSelCnt == 0) {
         		$("#quesSelTd").html(quesSelTd);
         	} else {
         		$("#quesSelTd").append(quesSelTd);
         	}
         	quesSelCnt++;
-        	return false;
         });
         
-/*         $( document ).on( "click", ".up", function () {
-        	console.log($(this).closet("tr").prev());
-        	alert($(this).closet("tr").prev());
-        	return false;
-        	} );  */
-        $(".up").delegate("click", function () {
-        	console.log($(this).closet("tr").prev());
-        	alert($(this).closet("tr").prev());
-        	return false;
+        $( document ).on( "click", ".up", function () {
+        	if ($(this).closest("tr").prev().html() == undefined) {
+        		alert("더이상 위로 이동할수 없습니다.");	
+        	}
+        	$(this).closest("tr").prev().before($(this).closest("tr"));
+        });
+        
+        $( document ).on( "click", ".down", function () {
+        	if ($(this).closest("tr").next().html() == undefined) {
+        		alert("더이상 위로 이동할수 없습니다.");	
+        	}
+        	$(this).closest("tr").next().after($(this).closest("tr"));
+        });
+        
+        $( document ).on( "click", ".delBtn", function () {
+        	$(this).closest("tr").remove();
         });
 
         $("#surveyFormAddBtn").on("click", function () {
@@ -237,7 +252,7 @@
         //질문 리스트 그리기 type.val(1).
         function renderApplied1(quesList) {
             var str = "";
-            str += "<p><input class='Qchoice' id ='Qchoice' name='quesName' value='" + quesList.quesNo + "' type='checkbox'>&nbsp;&nbsp;&nbsp;" + quesList.quesName + "</p>";
+            str += "<li><input class='Qchoice' id ='Qchoice' name='quesName' value='" + quesList.quesNo + "' type='checkbox'>&nbsp;&nbsp;&nbsp;" + quesList.quesName + "</li>";
             $("#quesList1").append(str);
 
         }
@@ -245,7 +260,7 @@
         //질문 리스트 그리기 type.val(2).
         function renderApplied2(quesList) {
             var str = "";
-            str += "<p><input id ='Qchoice' name='quesName' value='" + quesList.quesNo + "' type='checkbox'>&nbsp;&nbsp;&nbsp;" + quesList.quesName + "</p>";
+            str += "<li><input id ='Qchoice' name='quesName' value='" + quesList.quesNo + "' type='checkbox'>&nbsp;&nbsp;&nbsp;" + quesList.quesName + "</li>";
             $("#quesList2").append(str);
         }
 
