@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="survey.mapper.SurveyDao">
+
+	<select id="quesList" parameterType="java.util.ArrayList" resultType="survey.model.quesVO">
+ 		<![CDATA[
+        	SELECT 
+        		quesNo,
+        		quesName,
+        		type 
+        	FROM 
+        		question
+        	Where quesNo in
+        	]]>
+	    	<foreach item="quesList" collection="list" index="index" open="(" separator="," close=")">
+		    	<![CDATA[		
+    			#{quesList}
+		    	]]>		
+	        </foreach>
+	        <![CDATA[	
+        	ORDER BY quesNo DESC 
+        	]]>
+    </select>
+    
+    <insert id="surveyAdd" parameterType="survey.model.surveyVO">
+	    <![CDATA[
+	    	INSERT INTO survey(quesNo,cateNo,companyNo,manager,type,answer,dissatisReason,satisVal) 
+        	VALUES(#{quesNo}, #{cateNo},#{companyNo},#{manager},#{type},#{answer},#{dissatisReason},#{satisVal})
+	    ]]>
+    
+    
+    </insert>
+
+
+
+</mapper>

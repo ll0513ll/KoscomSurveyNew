@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="survey.mapper.QuesEditDao">
+
+	<select id="getCateName" parameterType="int" resultType="survey.model.cateVO">
+ 		<![CDATA[
+        	SELECT 
+        		cateName,
+        		cateNo
+        	FROM 
+        		cate 
+        	WHERE cateNo = #{cateName} 
+        ]]>
+    </select>
+    
+    <select id="getQuesList" resultType="survey.model.quesVO">
+ 		<![CDATA[
+        	SELECT 
+        		quesNo,
+        		quesName,
+        		type 
+        	FROM 
+        		question 
+        	ORDER BY quesNo DESC 
+        ]]>
+    </select>
+ 
+ 	 <insert id="addQues" parameterType="survey.model.quesVO">
+    	<![CDATA[
+        	INSERT INTO 
+        		question(quesNo,quesName,type) 
+        	VALUES
+        		(#{quesNo},#{quesName},#{type})
+        ]]>
+    </insert>
+    
+    <delete id="delQues" parameterType="java.util.ArrayList" >
+	    <![CDATA[
+	    	DELETE FROM question  
+	    	WHERE quesNo in
+	    ]]>
+	    	<foreach item="quesList" collection="list" index="index" open="(" separator="," close=")">
+		    	<![CDATA[		
+    			#{quesList}
+		    	]]>		
+	        </foreach>
+    </delete>
+ 
+ </mapper>

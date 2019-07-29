@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="survey.mapper.CateEditDao">
+ 
+ 	<select id="getCateList" resultType="survey.model.cateVO">
+ 		<![CDATA[
+        	SELECT 
+        		cateNo,
+        		cateName,
+        		cateInfo 
+        	FROM 
+        		cate 
+        	ORDER BY cateNo DESC 
+        ]]>
+    </select>
+ 
+    <insert id="addCate" parameterType="survey.model.cateVO">
+    	<![CDATA[
+        	INSERT INTO 
+        		cate(cateNo,cateName,cateInfo) 
+        	VALUES
+        		(#{cateNo},#{cateName},#{cateInfo})
+        ]]>
+    </insert>
+    
+    <delete id="delCate" parameterType="java.util.ArrayList" >
+	    <![CDATA[
+	    	DELETE FROM cate  
+	    	WHERE cateNo in
+	    ]]>
+	    	<foreach item="cateList" collection="list" index="index" open="(" separator="," close=")">
+		    	<![CDATA[		
+    			#{cateList}
+		    	]]>		
+	        </foreach>
+    </delete>
+
+</mapper>
+
+
+

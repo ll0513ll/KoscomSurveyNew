@@ -1,0 +1,23 @@
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+   
+debug: true
+spring:
+  thymeleaf:
+    enabled: false
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/survey?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      password: 1234
+      username: root
+  mysql:
+    datasource:
+      hikari:
+        connection-test-query: 'SELECT 1 FROM DUAL '
+        connection-timeout: 100000
+        maximum-pool-size: '10 '
+        minimum-idle: '5 '
+      type: 'com.zaxxer.hikari.HikariDataSource '

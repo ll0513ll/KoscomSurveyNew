@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="survey.mapper.CompanyDao">
+ 
+ 	<select id="getCompanyList" resultType="survey.model.companyVO">
+ 		<![CDATA[
+        	SELECT 
+        		companyNo,
+        		companyName
+        	FROM 
+        		company
+        	ORDER BY companyNo DESC 
+        ]]>
+    </select>
+ </mapper>
