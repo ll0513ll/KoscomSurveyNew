@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="survey.mapper.SurveyUrlDao">
+
+	<select id="getServeyCount" resultType="int">
+		 <![CDATA[
+		 
+		 SELECT 
+		 	count(*)
+		 FROM 
+		 	surveyformgroup
+		 
+		 ]]>
+	</select>
+
+	<select id="getServeyList" parameterType="survey.model.PagingVO" resultType="survey.model.SurveyFormGroupVo">
+		 <![CDATA[
+		 
+		 SELECT surveyFormGroupNo,cateName,regDate,endDate,startDate
+		 FROM surveyformgroup
+		 ORDER BY surveyFormGroupNo DESC
+		 limit #{startLimit}, #{pageSize}
+		 
+		 ]]>
+	</select>
+	
+	<select id="totalCount" resultType="survey.model.SurveyFormGroupVo">
+		 <![CDATA[
+		 
+		 SELECT surveyFormGroupNo 
+		 FROM surveyformgroup 
+		 
+		 ]]>
+	</select>
+	
+	<update id="addDate" parameterType="survey.model.SurveyFormGroupVo">
+		<![CDATA[
+			UPDATE surveyformgroup
+			SET startDate = #{startDate},
+				endDate = #{endDate}
+			WHERE surveyFormGroupNo = #{surveyFormGroupNo}
+		]]>
+	</update>
+	
+</mapper>

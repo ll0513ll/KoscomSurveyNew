@@ -4,7 +4,7 @@
 
 <mapper namespace="survey.mapper.SurveyDao">
 
-	<select id="quesList" parameterType="java.util.ArrayList" resultType="survey.model.quesVO">
+	<select id="List" parameterType="int" resultType="survey.model.surveyVO">
  		<![CDATA[
         	SELECT 
         		quesNo,
@@ -24,10 +24,21 @@
         	]]>
     </select>
     
+    <select id="quesList" parameterType="int" resultType="survey.model.surveyVO">
+ 		<![CDATA[
+			
+			SELECT cateName,quesName,TYPE 
+			FROM surveyform
+			INNER JOIN surveyformgroup ON surveyform.surveyFormGroupNo = surveyformgroup.surveyFormGroupNo  
+			WHERE surveyform.surveyFormGroupNo = #{surveyFormGroupNo}
+			ORDER BY surveyFormNo DESC
+        	]]>
+    </select>
+    
     <insert id="surveyAdd" parameterType="survey.model.surveyVO">
 	    <![CDATA[
-	    	INSERT INTO survey(quesNo,cateNo,companyNo,manager,type,answer,dissatisReason,satisVal) 
-        	VALUES(#{quesNo}, #{cateNo},#{companyNo},#{manager},#{type},#{answer},#{dissatisReason},#{satisVal})
+	    	INSERT INTO survey(surveyGroupNo,companyNo,manager,type,quesName,answer,dissatisReason,satisVal,participate,surveyDate) 
+        	VALUES(#{quesFormGroupNo},#{companyNo},#{manager},#{type},#{quesName},#{answer},#{dissatisReason},#{satisVal},1,NOW())
 	    ]]>
     
     

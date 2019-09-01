@@ -30,7 +30,7 @@
 
 
 <div class="jumbotron">
-    <h3 style="font-weight: normal;">카테고리 제목</h3>
+    <h3 style="font-weight: normal;" id="cateTitle">설문지 제목</h3>
     <div class="addCate">
         <p>
             <input type="text" id="cateName" name='addCateName' style="width: 600px;" value="">
@@ -46,6 +46,7 @@
     <p></p>
     <div id="addBtnDiv" style="text-align: center; padding-top: 10px;">
         <button class="btn btn-warning" id="addBtn" role="button">추가하기</button>
+        <button class="btn btn-warning" id="updateBtn" role="button">수정하기</button>
     </div>
 </div>
 <form method="post" class="cateList-form" action="${pageContext.request.contextPath}/quesEdit/">
@@ -56,13 +57,18 @@
                 <tbody>
                 <c:forEach items="${cateList}" var="vo">
                     <tr>
-                        <td name="cateInfo" title="${vo.cateInfo}" style="font-weight: bold;">
-                            <input class="Qchoice" name="cateName" type="checkbox" value="${vo.cateNo}">&nbsp;&nbsp;&nbsp;${vo.cateName}
+                        <td name="cateInfo" title="${vo.cateInfo}" style="font-weight: bold;font-size:14px;">
+                        	<input type="hidden" name="hiddenInfo" value="${vo.cateInfo}">
+                            <input class="Qchoice" name="cateName" type="checkbox" value="${vo.cateNo}"/>&nbsp;&nbsp;&nbsp;${vo.cateName}
                         </td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
+            <div class="buttonBox" style="text-align:center;padding-top: 25px;">
+		        <button type="button" class="btn btn-primary" id="editBtn">수정</button>
+		        <button type="button" id="cate_del" class="btn btn-default" style="margin-left: 10px;">삭제</button>
+			</div>
         </div>
     </div>
 </form>
@@ -73,6 +79,10 @@
 
 <script type="text/javascript">
 
+	$(document).ready(function () {
+	 	$("#updateBtn").hide();
+	
+	});
     //삭제버튼 누를때
     $("#cate_del").click(function () {
         console.log("삭제모달");
@@ -156,7 +166,7 @@
         function renderApplied(cateList) {
             var str = "";
             str += "<tr data-careerno='" + cateList.cateNo + "'>";
-            str += "<td name='cateInfo' style='font-weight: bold;' title='" + cateList.cateInfo + "'><input name='cateName' type='checkbox' value='" + cateList.cateNo + "'>&nbsp;&nbsp;&nbsp;" + cateList.cateName + "</td>";
+            str += "<td name='cateInfo' style='font-weight: bold;font-size:14px;' title='" + cateList.cateInfo + "'><input name='cateName' type='checkbox' value='" + cateList.cateNo + "'>&nbsp;&nbsp;&nbsp;" + cateList.cateName + "</td>";
             $("#cateListTable").append(str);
 
         }
@@ -197,7 +207,67 @@
         })
 
     }
+	
+    //수정버튼 누를때
+    $("#editBtn").click(function () {
+    	//<input class="Qchoice" name="cateName" type="checkbox" value="${vo.cateNo}">&nbsp;&nbsp;&nbsp;${vo.cateName}
+        var choiceCate = $("input[class=Qchoice]:checked").parent().text();
+        console.log(choiceCate);
+        choiceCate.replace(/^\s*/, "") ;
+        
+        var cateInfo = $("input[class=Qchoice]:checked").prev().val();
+        console.log(cateInfo);
+        
+        var count = $("input[name=cateName]:checked").length;
+        
+        var cateNo = $("input[name=cateName]:checked").val();
+        console.log($("input[name=cateName]:checked").val());
+        
+        if(count >= 2){
+        	alert("제목 수정은 한번에 하나씩만 가능합니다.");
+        	return;
+        }
 
+        $("#cateTitle").text("제목 수정");
+        $("#cateName").val(choiceCate);
+        $("#addBtn").hide();
+        $("#updateBtn").show();
+        $("#updateBtn").val(cateNo);
+        $("#cateInfo").val(cateInfo);
+        
+        
+        
+        $('html').scrollTop(0);
+
+    });
+    
+    $("#updateBtn").click(function () {
+       	
+    	var report = {
+    			cateNo: $(this).val(),
+    			cateName: $("#cateName").val()
+    	}
+    	console.log(report);
+    	
+    	$.ajax({
+            url: "/cateEdit/cateUpdate",
+            type: "POST",
+            data: report,
+            dataType: "json",
+            success: function (result) {
+                console.log(result)
+                if (result >= 1) {
+                	alert("제목이 수정되었습니다.");
+                	location.reload();
+                }
+            },
+            error: function () {
+                alert("제목 수정에 실패했습니다.");
+
+            }
+        })
+    
+    });
 
 </script>
 

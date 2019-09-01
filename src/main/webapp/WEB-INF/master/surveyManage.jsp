@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="./top.jsp" %>
 
 <!-- Modal -->
@@ -23,15 +24,6 @@ pageEncoding="UTF-8"%>
 							</tr>
 						 </table>
 					</div>
-				 <!--담당자&nbsp;&nbsp;&nbsp;-->
-				<!-- <div style = "margin-top: 20px;margin-bottom: 20px; margin-left: 35%;margin-right: 40%;padding-top:30px;">
-					 <table style="width: 500px;float:left;">
-						<tr>
-							<th style = "font-size:2rem;width: 80px;">담당자 : </th>
-							<td id = "cliManager" style = "font-size:3rem;"></td>
-						</tr>
-					 </table>
-				 </div> -->
 				</div>
 				<h4>문의요청시 응대가 빨랐나요?</h4>
 				<table class="table" style="margin-bottom: 35px;">
@@ -149,40 +141,15 @@ pageEncoding="UTF-8"%>
   </div>
 </div>  <!-- Modal -->
 
-<div class="container" style="margin-top:30px;">
-  <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: white;">
-	<nav>
-	  <ul class="nav nav-pills pull-right" style=" margin-right: 330px;">
-		<li role="presentation" class="active" style="margin-top: 20px;"><a href="/cateEdit/">Edit</a></li>
-		<li role="presentation" style="margin-top: 20px;"><a href="/survey/">Survey</a></li>
-	  </ul>
-	</nav>
-	<h4 class="text-muted">
-		<img src = "/assets/images/KoscomLogo.PNG"
-			 style = "width: 14rem; height: 4rem;flot:left;margin-bottom: 1%;">
-		 설문조사 편집
-	</h4>
-  </div>
-  <div class = "row">
-	  <div class="col-sm-3 col-md-2 sidebar" style="margin-top:30px;">
-		  <ul class="nav nav-sidebar">
-			<li><a href="/cateEdit/">카테고리 편집 <span class="sr-only">(current)</span></a></li>
-			<li><a href="/quesEdit/quesList">질문 편집</a></li>
-			<li class="active"><a href="/master/surveyManage">설문조사 관리</a></li>
-		  </ul>
-	 </div>
-
 	  <div class="jumbotron">
-		<div class = "selectCate" style="margin-bottom: 3%;" >
-			<label for="cate" style="font-size:1.5em;">카테고리 선택</label>
-			<select class="form-control" id = "cate">
-			  <option value="1">코스콤 2019 고객만족도 조사.</option>
-			  <option value="2">코스콤 구매관련 만족도 조사.</option>
-			  <option value="3">코스콤 주문관련 만족도 조사.</option>
-			  <option value="4">코스콤 2018 하반기 고객만족도 조사.</option>
-			  <option value="5">코스콤 2018 상반기 고객만족도 조사.</option>
-			</select>
-		</div>
+		<div class="selectCate" style="margin-bottom: 3%;">
+            <label style="font-size:1.5em;">설문조사 선택</label>
+            <select class="form-control" id="selectCate" name="selectCate">
+                <c:forEach var="cateList" items="${cateList}" varStatus="status">
+                    <option value="${cateList.cateName}">${cateList.cateName}</option>
+                </c:forEach>
+            </select>
+        </div>
 			<p></p>
 		<div style = "text-align: center; padding-top: 10px;"><a class="btn btn-warning" href="#" role="button">확인하기</a></div>
 	  </div>

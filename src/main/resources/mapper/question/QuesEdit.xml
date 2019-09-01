@@ -47,5 +47,15 @@
 		    	]]>		
 	        </foreach>
     </delete>
+    
+    <update id="quesUpdate" parameterType="survey.model.quesVO">
+    	<![CDATA[
+    		UPDATE question
+
+			SET quesName=#{quesName}
+			
+			WHERE quesNo=#{quesNo}
+    	]]>
+    </update>
  
  </mapper>

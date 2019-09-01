@@ -22,25 +22,26 @@ public class QuesEditDao {
 	}
 	
 	public List<quesVO> getQuesList(){
-		System.out.println("get 질문 다오");
 		List<quesVO> quesList = sqlSession.selectList("getQuesList");
 		return quesList;
 	 }
 	
 	public int addQues(quesVO quesVO) {
 		 
-		 System.out.println("질문추가 다오");
 		 
 		return  sqlSession.insert("addQues",quesVO);
 	 }
 	
 	public int delQues(ArrayList<String> delQuesList) {
 		 
-		 System.out.println("질문삭제 다오");
-		 System.out.println(delQuesList);
 		 List<String> list = delQuesList;
 		 
 		 return sqlSession.delete("delQues", list);
 		 
 	 }
+	
+	public int quesUpdate(quesVO quesVO) {
+		
+		return sqlSession.update("quesUpdate",quesVO);
+	}
 }

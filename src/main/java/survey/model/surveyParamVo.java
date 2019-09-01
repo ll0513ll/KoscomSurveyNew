@@ -6,6 +6,7 @@ public class surveyParamVo {
 	private int surveyNo;
 	private int cateNo;
 	private int companyNo;
+	private int quesFormGroupNo;
 	private int[] quesNo;
 	private String cateName;
 	private String manager;
@@ -17,6 +18,35 @@ public class surveyParamVo {
 	private String[] dissatisReason;
 	private String[] answer;
 	private int[] multipleVal;
+	
+	
+	public surveyParamVo() {
+		super();
+	}
+	
+	
+	public surveyParamVo(int surveyNo, int cateNo, int companyNo, int quesFormGroupNo, int[] quesNo, String cateName,
+			String manager, String companyName, String surveyDate, int[] type, String[] quesName, int satisVal,
+			String[] dissatisReason, String[] answer, int[] multipleVal) {
+		super();
+		this.surveyNo = surveyNo;
+		this.cateNo = cateNo;
+		this.companyNo = companyNo;
+		this.quesFormGroupNo = quesFormGroupNo;
+		this.quesNo = quesNo;
+		this.cateName = cateName;
+		this.manager = manager;
+		this.companyName = companyName;
+		this.surveyDate = surveyDate;
+		this.type = type;
+		this.quesName = quesName;
+		this.satisVal = satisVal;
+		this.dissatisReason = dissatisReason;
+		this.answer = answer;
+		this.multipleVal = multipleVal;
+	}
+
+
 	public int getSurveyNo() {
 		return surveyNo;
 	}
@@ -35,6 +65,18 @@ public class surveyParamVo {
 	public void setCompanyNo(int companyNo) {
 		this.companyNo = companyNo;
 	}
+	
+	
+	public int getQuesFormGroupNo() {
+		return quesFormGroupNo;
+	}
+
+
+	public void setQuesFormGroupNo(int quesFormGroupNo) {
+		this.quesFormGroupNo = quesFormGroupNo;
+	}
+
+
 	public int[] getQuesNo() {
 		return quesNo;
 	}
@@ -101,15 +143,16 @@ public class surveyParamVo {
 	public void setMultipleVal(int[] multipleVal) {
 		this.multipleVal = multipleVal;
 	}
-	
+
+
 	@Override
 	public String toString() {
-		return "surveyParamVo [surveyNo=" + surveyNo + ", cateNo=" + cateNo + ", companyNo=" + companyNo + ", quesNo="
-				+ Arrays.toString(quesNo) + ", cateName=" + cateName + ", manager=" + manager + ", companyName="
-				+ companyName + ", surveyDate=" + surveyDate + ", type=" + Arrays.toString(type) + ", quesName="
-				+ Arrays.toString(quesName) + ", satisVal=" + satisVal + ", dissatisReason="
-				+ Arrays.toString(dissatisReason) + ", answer=" + Arrays.toString(answer) + ", multipleVal="
-				+ Arrays.toString(multipleVal) + "]";
+		return "surveyParamVo [surveyNo=" + surveyNo + ", cateNo=" + cateNo + ", companyNo=" + companyNo
+				+ ", quesFormGroupNo=" + quesFormGroupNo + ", quesNo=" + Arrays.toString(quesNo) + ", cateName="
+				+ cateName + ", manager=" + manager + ", companyName=" + companyName + ", surveyDate=" + surveyDate
+				+ ", type=" + Arrays.toString(type) + ", quesName=" + Arrays.toString(quesName) + ", satisVal="
+				+ satisVal + ", dissatisReason=" + Arrays.toString(dissatisReason) + ", answer="
+				+ Arrays.toString(answer) + ", multipleVal=" + Arrays.toString(multipleVal) + "]";
 	}
 	
 	

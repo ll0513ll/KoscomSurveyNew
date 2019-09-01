@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import survey.mapper.QuesEditDao;
 import survey.model.cateVO;
@@ -23,23 +24,25 @@ public class QuesEditService {
 	
 	public List<quesVO> getQuesList() throws Exception{
 		
-		System.out.println("겟 질문서비스");
 		List<quesVO> quesList = quesDao.getQuesList();
 		 return quesList;
 	}
 	
 	public int addQues(quesVO quesVO) throws Exception{
 		
-		System.out.println("질문추가 서비스");
 		
 		return quesDao.addQues(quesVO);
 	}
 	
 	public int delQues(ArrayList<String> delQuesList) throws Exception{
 		
-		System.out.println("질문삭제 서비스");
-		System.out.println(delQuesList);
 		
 		return quesDao.delQues(delQuesList);
 	}
+	
+	public int quesUpdate(quesVO quesVO) {
+		
+		return quesDao.quesUpdate(quesVO);
+	}
+
 }

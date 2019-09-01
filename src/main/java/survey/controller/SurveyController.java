@@ -1,6 +1,5 @@
 package survey.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import survey.model.cateVO;
 import survey.model.companyVO;
-import survey.model.quesVO;
 import survey.model.surveyParamVo;
+import survey.model.surveyVO;
 import survey.service.CompanyService;
 import survey.service.QuesEditService;
 import survey.service.SurveyService;
@@ -34,18 +32,18 @@ public class SurveyController {
 	CompanyService companyService;
 	
 	@RequestMapping(value="/", method= {RequestMethod.GET,RequestMethod.POST})
-	public String cliSurvey(@RequestParam(value="selectCate",required=false) int cateName,
-							@RequestParam(value="quesName[]",required=false) ArrayList<String> quesNoList,
+	public String cliSurvey(
+							@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo,
 							Model model)throws Exception {
-		
-		cateVO cateVo = quesService.getCateName(cateName);
-		model.addAttribute("cateVo", cateVo);
-		
+		System.out.println("실제 설문지 페이지 컨트롤러");
+		System.out.println(quesFormGroupNo);
+		List<surveyVO> surveyVo = surveyService.getQuesList(quesFormGroupNo);
 		List<companyVO> cliVo = companyService.getCompanyList();
+		System.out.println(surveyVo);
+		System.out.println(cliVo);
 		model.addAttribute("cliVo", cliVo);
-		
-		List<quesVO> selectQlist = surveyService.getQuesList(quesNoList);
-		model.addAttribute("selectQlist", selectQlist);
+		model.addAttribute("surveyVo", surveyVo);
+		model.addAttribute("quesFormGroupNo", quesFormGroupNo);
 		
 		return "master/cliSurvey";
 	}
@@ -56,8 +54,10 @@ public class SurveyController {
 		
 		System.out.println("설문지 하나 만들었다");
 		System.out.println(surveyParam);
+		int result = surveyService.surveyAdd(surveyParam);
+		System.out.println(result);
 		
-		return surveyService.surveyAdd(surveyParam);
+		return result;
 		
 		
 	}

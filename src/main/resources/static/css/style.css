@@ -29,3 +29,9 @@ table caption {
 {
 	background: #fff
 }
+
+.choice
+{
+	font-size: 1.5em;
+	color: red;
+}

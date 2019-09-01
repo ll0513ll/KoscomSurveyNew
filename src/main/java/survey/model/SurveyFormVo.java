@@ -5,8 +5,22 @@ public class SurveyFormVo {
     private long surveyFormGroupNo;
     private String quesName;
     private int type;
-    private int order;
+    private int orderNo;
     
+    
+	public SurveyFormVo() {
+		super();
+	}
+
+	public SurveyFormVo(long surveyFormNo, long surveyFormGroupNo, String quesName, int type, int orderNo) {
+		super();
+		this.surveyFormNo = surveyFormNo;
+		this.surveyFormGroupNo = surveyFormGroupNo;
+		this.quesName = quesName;
+		this.type = type;
+		this.orderNo = orderNo;
+	}
+	
 	public long getSurveyFormNo() {
 		return surveyFormNo;
 	}
@@ -31,11 +45,18 @@ public class SurveyFormVo {
 	public void setType(int type) {
 		this.type = type;
 	}
-	public int getOrder() {
-		return order;
+	public int getOrderNo() {
+		return orderNo;
 	}
-	public void setOrder(int order) {
-		this.order = order;
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
 	}
+
+	@Override
+	public String toString() {
+		return "SurveyFormVo [surveyFormNo=" + surveyFormNo + ", surveyFormGroupNo=" + surveyFormGroupNo + ", quesName="
+				+ quesName + ", type=" + type + ", orderNo=" + orderNo + "]";
+	}
+	
 	
 }

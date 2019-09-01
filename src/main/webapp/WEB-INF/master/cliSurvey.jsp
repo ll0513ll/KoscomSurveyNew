@@ -34,9 +34,10 @@
     <div class="col-lg">
         <form method="post" class="quesList-form" id="formname1">
             <div class="jumbotron" style="text-align:center; display: table;width: 100%;">
-                <input type="hidden" id="cateNo" name="cateNo" value="${cateVo.cateNo}">
-                <h2 id="cateName" name="cateName" style="margin-top: 0px; margin-bottom: 4%;color: inherit;"
-                    value="${cateVo.cateName}">${cateVo.cateName}</h2>
+            	<input type="hidden" id="cateName" name="cateName" value="${surveyVo[0].cateName}">
+            	<input type="hidden" id="quesFormGroupNo" name="quesFormGroupNo" value="${quesFormGroupNo}">
+                <h2 id="HcateName" name="HcateName" style="margin-top: 0px; margin-bottom: 4%;color: inherit;"
+                    value="${surveyVo[0].cateName}">${surveyVo[0].cateName}</h2>
                 <p><select class="form-control" id="selectCompany" name="companyNo"
                            style="width: 250px; margin: 0 auto;">
                     <option id="choicCompany">회사를 선택하세요.</option>
@@ -50,7 +51,7 @@
                           style="width: 250px;height:38px;font-size:1.5rem;"></p>
             </div>
             <div class="svPart">
-                <c:forEach var="vo" items="${selectQlist}" varStatus="status">
+                <c:forEach var="vo" items="${surveyVo}" varStatus="status">
                     <c:if test="${vo.type eq 1 }">
                         <c:set var="count" value="${count + 1}"/>
                         <div>
@@ -78,7 +79,7 @@
                     </c:if>
                 </c:forEach>
             </div>
-            <c:forEach var="vo" items="${selectQlist}" varStatus="status">
+            <c:forEach var="vo" items="${surveyVo}" varStatus="status">
                 <c:if test="${vo.type eq 2 }">
                     <c:set var="count" value="${count + 1}"/>
                     <div class="svPart">
@@ -166,10 +167,9 @@
 
 
         var report = {
-            cateNo: $("#cateNo").val(),
-            cateName: $("#cateName").text(),
+            cateName: $("#cateName").val(),
             manager: $("#manager").val(),
-            companyName: $("#companyName").val(),
+            companyNo: $("#selCompanyName").val(),
             quesNo: quesNo,
             quesName: quesName,
             multipleVal: multipleVal,
@@ -216,14 +216,14 @@
             data: report,
             dataType: 'jason',
             success: function (result) {
-
-                console.log("ajax 저장완료!")
-                surveyEnd()
-                //$("#myModal").modal();
-                //location.href="thanks.jsp"
-
-            }
-        });
+					if(result==1){
+					console.log(result);
+	                console.log("ajax 저장완료!");
+	                surveyEnd();
+					
+					}
+           		 }
+       	 });
 
     }
 

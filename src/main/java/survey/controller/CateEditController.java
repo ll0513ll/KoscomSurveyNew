@@ -25,7 +25,6 @@ public class CateEditController {
 	@RequestMapping(value="/", method= {RequestMethod.GET,RequestMethod.POST})
 	public String cateEdit(Model model) throws Exception{
 		
-		System.out.println("카테컨트롤러");
 		List<cateVO> cateList = cateEditService.getCateList();
 		
 		model.addAttribute("cateList",cateList);
@@ -37,8 +36,6 @@ public class CateEditController {
 	@RequestMapping(value="/addCate", method= {RequestMethod.POST})
 	public int addCate(@ModelAttribute cateVO cateVO) throws Exception{
 		
-		System.out.println("카테추가");
-		
 		return cateEditService.addCate(cateVO);
 	}
 	
@@ -46,7 +43,6 @@ public class CateEditController {
 	@RequestMapping(value="/getCateList", method= {RequestMethod.GET,RequestMethod.POST})
 	public List<cateVO> getCateList(Model model) throws Exception{
 		
-		System.out.println("카테불러오기");
 		List<cateVO> cateList = cateEditService.getCateList();
 		model.addAttribute("cateList",cateList);
 		
@@ -56,12 +52,18 @@ public class CateEditController {
 	@ResponseBody
 	@RequestMapping(value="/delCate", method= {RequestMethod.GET,RequestMethod.POST})
 	public int delCate(@RequestParam(value="delCateList[]") ArrayList<String> delCateList) throws Exception{
-		System.out.println("카테삭제");
 
-		System.out.println(delCateList);
-		
 		return cateEditService.delCate(delCateList);
 	
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/cateUpdate", method= {RequestMethod.GET,RequestMethod.POST})
+	public int cateUpdate(@ModelAttribute cateVO cateVO) throws Exception{
 
+		return cateEditService.cateUpdate(cateVO);
+	
+	}
+	
+	
 }

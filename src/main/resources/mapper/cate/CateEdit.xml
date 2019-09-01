@@ -36,6 +36,18 @@
 		    	]]>		
 	        </foreach>
     </delete>
+    
+    <update id="cateUpdate" parameterType="survey.model.cateVO">
+    	<![CDATA[
+    		UPDATE cate
+
+			SET cateName = #{cateName},
+				cateInfo = #{cateInfo}
+			
+			WHERE cateNo=#{cateNo}
+    	]]>
+    
+    </update>
 
 </mapper>
 

@@ -31,7 +31,6 @@ public class QuesEditController {
 	@RequestMapping(value="/", method= {RequestMethod.GET,RequestMethod.POST})
 	public String edit(Model model) throws Exception {
 		
-		System.out.println("질문편집 컨트롤러");
 		
 		List<quesVO> quesList = quesService.getQuesList();
 		model.addAttribute("quesList", quesList);
@@ -49,9 +48,7 @@ public class QuesEditController {
 	@RequestMapping(value="/quesList", method= {RequestMethod.GET,RequestMethod.POST})
 	public String quesList(Model model) throws Exception {
 		
-		System.out.println("질문 list 가져오기 컨트롤러");
 		List<quesVO> quesList = quesService.getQuesList();
-		System.out.println(quesList);
 		model.addAttribute("quesList", quesList);
 		
 		
@@ -66,7 +63,6 @@ public class QuesEditController {
 	public List<quesVO> ajaxQuesList() throws Exception {
 		
 		List<quesVO> quesList = quesService.getQuesList();
-		System.out.println(quesList);
 		return quesList;
 	}
 	
@@ -74,7 +70,6 @@ public class QuesEditController {
 	@RequestMapping(value="/addQues", method= {RequestMethod.POST})
 	public int addQues(@ModelAttribute quesVO quesVO ) throws Exception{
 		
-		System.out.println("질문추가");
 		
 		return quesService.addQues(quesVO);
 	}
@@ -82,12 +77,19 @@ public class QuesEditController {
 	@ResponseBody
 	@RequestMapping(value="/delQues", method= {RequestMethod.GET,RequestMethod.POST})
 	public int delQues(@RequestParam(value="delQuesList[]") ArrayList<String> delQuesList) throws Exception{
-		System.out.println("질문삭제");
-
-		System.out.println(delQuesList);
 		
 		return quesService.delQues(delQuesList);
 	
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/quesUpdate", method= {RequestMethod.GET,RequestMethod.POST})
+	public int quesUpdate(@ModelAttribute quesVO quesVO) {
+		
+		System.out.println("질문수정");
+
+		System.out.println(quesVO);
+		return quesService.quesUpdate(quesVO);
 	}
 
 	
