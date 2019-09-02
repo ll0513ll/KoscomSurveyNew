@@ -9,7 +9,7 @@ CREATE TABLE `cate` (
 CREATE TABLE `company` (
   `companyNo` int(11) NOT NULL AUTO_INCREMENT,
   `companyName` varchar(100) NOT NULL,
-  `manager` varchar(30) DEFAULT NULL,
+  `companyManager` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`companyNo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8
 

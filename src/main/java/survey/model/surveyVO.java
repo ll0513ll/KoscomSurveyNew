@@ -4,10 +4,12 @@ public class surveyVO {
 
 		private int surveyNo;
 		private int companyNo;
+		private int surveyGroupNo;
 		private int quesNo;
 		private int quesFormGroupNo;
 		private String quesName;
 		private String cateName;
+		private String companyName;
 		private String manager;
 		private String surveyDate;
 		private int type;
@@ -27,16 +29,18 @@ public class surveyVO {
 
 
 
-		public surveyVO(int surveyNo, int companyNo,int quesNo, int quesFormGroupNo, String quesName, String cateName,
-				String manager, String surveyDate, int type, int satisVal, String dissatisReason, String answer,
-				int participate, long surveyFormNo, long surveyFormGroupNo, int orderNo) {
+		public surveyVO(int surveyNo, int companyNo, int surveyGroupNo,int quesNo, int quesFormGroupNo, String quesName, String cateName,
+				String companyName, String manager, String surveyDate, int type, int satisVal, String dissatisReason,
+				String answer, int participate, long surveyFormNo, long surveyFormGroupNo, int orderNo) {
 			super();
 			this.surveyNo = surveyNo;
 			this.companyNo = companyNo;
+			this.surveyGroupNo = surveyGroupNo;
 			this.quesNo = quesNo;
 			this.quesFormGroupNo = quesFormGroupNo;
 			this.quesName = quesName;
 			this.cateName = cateName;
+			this.companyName = companyName;
 			this.manager = manager;
 			this.surveyDate = surveyDate;
 			this.type = type;
@@ -67,12 +71,26 @@ public class surveyVO {
 			return companyNo;
 		}
 
+		
+
+		public int getSurveyGroupNo() {
+			return surveyGroupNo;
+		}
+
+
+
+		public void setSurveyGroupNo(int surveyGroupNo) {
+			this.surveyGroupNo = surveyGroupNo;
+		}
+
 
 
 		public void setCompanyNo(int companyNo) {
 			this.companyNo = companyNo;
 		}
-		
+
+
+
 		public int getQuesNo() {
 			return quesNo;
 		}
@@ -82,6 +100,7 @@ public class surveyVO {
 		public void setQuesNo(int quesNo) {
 			this.quesNo = quesNo;
 		}
+
 
 
 		public int getQuesFormGroupNo() {
@@ -116,6 +135,18 @@ public class surveyVO {
 
 		public void setCateName(String cateName) {
 			this.cateName = cateName;
+		}
+
+
+
+		public String getCompanyName() {
+			return companyName;
+		}
+
+
+
+		public void setCompanyName(String companyName) {
+			this.companyName = companyName;
 		}
 
 
@@ -242,22 +273,13 @@ public class surveyVO {
 
 		@Override
 		public String toString() {
-			return "surveyVO [surveyNo=" + surveyNo + ", companyNo=" + companyNo + ", quesNo=" + quesNo
-					+ ", quesFormGroupNo=" + quesFormGroupNo + ", quesName=" + quesName + ", cateName=" + cateName
-					+ ", manager=" + manager + ", surveyDate=" + surveyDate + ", type=" + type + ", satisVal="
-					+ satisVal + ", dissatisReason=" + dissatisReason + ", answer=" + answer + ", participate="
-					+ participate + ", surveyFormNo=" + surveyFormNo + ", surveyFormGroupNo=" + surveyFormGroupNo
-					+ ", orderNo=" + orderNo + ", getSurveyNo()=" + getSurveyNo() + ", getCompanyNo()=" + getCompanyNo()
-					+ ", getQuesNo()=" + getQuesNo() + ", getQuesFormGroupNo()=" + getQuesFormGroupNo()
-					+ ", getQuesName()=" + getQuesName() + ", getCateName()=" + getCateName() + ", getManager()="
-					+ getManager() + ", getSurveyDate()=" + getSurveyDate() + ", getType()=" + getType()
-					+ ", getSatisVal()=" + getSatisVal() + ", getDissatisReason()=" + getDissatisReason()
-					+ ", getAnswer()=" + getAnswer() + ", getParticipate()=" + getParticipate() + ", getSurveyFormNo()="
-					+ getSurveyFormNo() + ", getSurveyFormGroupNo()=" + getSurveyFormGroupNo() + ", getOrderNo()="
-					+ getOrderNo() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-					+ super.toString() + "]";
+			return "surveyVO [surveyNo=" + surveyNo + ", companyNo=" + companyNo + ", surveyGroupNo=" + surveyGroupNo
+					+ ", quesNo=" + quesNo + ", quesFormGroupNo=" + quesFormGroupNo + ", quesName=" + quesName
+					+ ", cateName=" + cateName + ", companyName=" + companyName + ", manager=" + manager
+					+ ", surveyDate=" + surveyDate + ", type=" + type + ", satisVal=" + satisVal + ", dissatisReason="
+					+ dissatisReason + ", answer=" + answer + ", participate=" + participate + ", surveyFormNo="
+					+ surveyFormNo + ", surveyFormGroupNo=" + surveyFormGroupNo + ", orderNo=" + orderNo + "]";
 		}
-
 
 
 }

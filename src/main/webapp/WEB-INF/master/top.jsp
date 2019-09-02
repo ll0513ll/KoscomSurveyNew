@@ -55,6 +55,6 @@
                 <li><a href="/cateEdit/">제목 관리<span class="sr-only">(current)</span></a></li>
                 <li class="active"><a href="/quesEdit/quesList">질문 관리</a></li>
                 <li><a href="/surveyURL/">설문조사지 내역</a></li>
-                <li><a href="/master/surveyManage">설문조사 관리</a></li>
+                <li><a href="/surveyManage/">설문조사 관리</a></li>
             </ul>
         </div>

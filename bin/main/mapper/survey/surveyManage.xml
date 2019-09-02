@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="survey.mapper.SurveyManageDao">
+
+	<select id="getSurveyList" resultType="survey.model.surveyVO">
+		<![CDATA[
+		 SELECT DISTINCT surveyGroupNo,cateName,quesName,manager,surveyDate,type,answer,dissatisReason,satisVal,companyName
+		 FROM survey
+		 JOIN company
+		 ON survey.companyNo = company.companyNo
+		 ORDER BY surveyGroupNo DESC
+		]]>
+	</select>
+	
+	<select id="getSelectSurvey" parameterType="int" resultType="survey.model.surveyVO">
+		<![CDATA[
+		 SELECT DISTINCT surveyGroupNo,cateName,quesName,manager,surveyDate,type,answer,dissatisReason,satisVal,companyName
+		 FROM survey
+		 JOIN company
+		 ON survey.companyNo = company.companyNo
+		 WHERE survey.surveyGroupNo = #{surveyNo}
+		 ORDER BY surveyGroupNo DESC
+		]]>
+	</select>
+
+
+</mapper>
