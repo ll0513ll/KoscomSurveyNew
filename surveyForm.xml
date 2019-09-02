@@ -31,7 +31,6 @@
 		 <![CDATA[
 		 
 		 SELECT * FROM surveyform  where surveyFormGroupNo = #{surveyFormGroupNo} 
-		 ORDER BY orderNo ASC
 		 
 		 ]]>
 	</select>
