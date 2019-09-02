@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="survey.mapper.SurveyFormDao">
+
+	<insert id="surveyFormGroupAdd" parameterType="survey.model.SurveyFormGroupVo" useGeneratedKeys="true" keyProperty="surveyFormGroupNo">
+	    <![CDATA[
+	    	INSERT INTO surveyformgroup(cateName,regDate,endDate,startDate)
+        	VALUES(#{cateName},now(),#{endDate},#{startDate})
+	    ]]>
+    </insert>
+
+
+	<insert id="surveyFormAdd" parameterType="survey.model.SurveyFormVo">
+	    <![CDATA[
+	    	INSERT INTO surveyform(surveyFormGroupNo,quesName,type,orderNo)
+        	VALUES(#{surveyFormGroupNo},#{quesName},#{type},#{orderNo})
+	    ]]> 
+    </insert>
+
+
+	<select id="getSurvey" resultType="int">
+		 <![CDATA[
+		 
+		 SELECT surveyFormroupNo FROM surveyformgroup  ORDER BY regDate DESC limit 1
+		 
+		 ]]>
+	</select>
+	
+	<select id="getSurveyForm" parameterType="int" resultType="survey.model.SurveyFormVo">
+		 <![CDATA[
+		 
+		 SELECT * FROM surveyform  where surveyFormGroupNo = #{surveyFormGroupNo} 
+		 
+		 ]]>
+	</select>
+</mapper>
