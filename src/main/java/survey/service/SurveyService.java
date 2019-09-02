@@ -31,24 +31,28 @@ public class SurveyService {
 		surveyVO surveyVo = new surveyVO();
 		int result = 0;
 		try {
-			for (int i=0; i < surveyParam.getQuesName().length; i++) {
-				//surveyVo = new surveyVO();				surveyVo.setCateName(surveyParam.getCateName());
+			for (int i=0; i < surveyParam.getQuesName().size(); i++) {
+				surveyVo = new surveyVO();
+				surveyVo.setCateName(surveyParam.getCateName());
 				surveyVo.setQuesFormGroupNo(surveyParam.getQuesFormGroupNo());
 				surveyVo.setCompanyNo(surveyParam.getCompanyNo());
-				surveyVo.setQuesName(surveyParam.getQuesName()[i]);
+				surveyVo.setQuesName(surveyParam.getQuesName().get(i));
 				surveyVo.setManager(surveyParam.getManager());
-				surveyVo.setDissatisReason(surveyParam.getDissatisReason()[i]);
-				System.out.println(surveyParam.getDissatisReason()[i]);
-				surveyVo.setSatisVal(surveyParam.getMultipleVal()[i]);
-				surveyVo.setType(surveyParam.getType()[i]);
-				
-				if (surveyParam.getType()[i] == 2) {
-					surveyVo.setAnswer(surveyParam.getAnswer()[i]);
-					surveyVo.setType(surveyParam.getType()[i]);
+				if (surveyParam.getDissatisReason().get(i) != null) {
+					surveyVo.setDissatisReason(surveyParam.getDissatisReason().get(i));
 				}
-					System.out.println(surveyVo);
-					result =  surveyDao.surveyAdd(surveyVo);
-					System.out.println(result);
+				if (surveyParam.getMultipleVal().get(i) != null) {
+					surveyVo.setSatisVal(surveyParam.getMultipleVal().get(i));
+				}
+				surveyVo.setType(surveyParam.getType().get(i));
+				
+				if (surveyParam.getType().get(i) == 2) {
+					surveyVo.setAnswer(surveyParam.getAnswer().get(i));
+					surveyVo.setType(surveyParam.getType().get(i));
+				}
+				System.out.println(surveyVo);
+				result =  surveyDao.surveyAdd(surveyVo);
+				System.out.println(result);
 			}
 			
 			
