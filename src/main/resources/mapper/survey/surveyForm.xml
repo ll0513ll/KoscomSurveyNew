@@ -5,7 +5,7 @@
 
 	<insert id="surveyFormGroupAdd" parameterType="survey.model.SurveyFormGroupVo" useGeneratedKeys="true" keyProperty="surveyFormGroupNo">
 	    <![CDATA[
-	    	INSERT INTO surveyFormGroup(cateName,regDate,endDate,startDate)
+	    	INSERT INTO surveyformgroup(cateName,regDate,endDate,startDate)
         	VALUES(#{cateName},now(),#{endDate},#{startDate})
 	    ]]>
     </insert>
@@ -22,7 +22,7 @@
 	<select id="getSurvey" resultType="int">
 		 <![CDATA[
 		 
-		 SELECT surveyFormGroupNo FROM surveyformgroup  ORDER BY regDate DESC limit 1
+		 SELECT surveyFormroupNo FROM surveyformgroup  ORDER BY regDate DESC limit 1
 		 
 		 ]]>
 	</select>
