@@ -52,52 +52,47 @@
             </div>
             <div class="svPart">
                 <c:forEach var="vo" items="${surveyVo}" varStatus="status">
+                    <div class="quesArea">
+                    <input type="hidden" class="type" name="type[${index}]" value="${vo.type}">
+                    <input type="hidden" class="quesName" name="quesName[${index}]" value="${vo.quesName}">
+                    <c:set var="count" value="${count + 1}"/>
                     <c:if test="${vo.type eq 1 }">
-                        <c:set var="count" value="${count + 1}"/>
-                        <div>
-                            <input type="hidden" name="type[${index}]" value="${vo.type}">
-                            <input type="hidden" name="quesNo[${index}]" value="${vo.quesNo}">
-                            <input type="hidden" name="quesName[${index}]" value="${vo.quesName}">
-                            <table class="table" style="margin-bottom: 35px;">
-                                <caption class="quesName" style="font-weight:bolder;font-size:1.8rem;">${count}. ${vo.quesName}</caption>
-                                <tbody>
-                                <tr>
-                                    <td><input type="radio" class="choice" name="multipleVal[${index}]" value="1"/>아주 나쁨</td>
-                                    <td><input type="radio" class="choice" name="multipleVal[${index}]" value="2"/>나쁨</td>
-                                    <td><input type="radio" class="choice" name="multipleVal[${index}]" value="3"/>보통</td>
-                                    <td><input type="radio" class="choice" name="multipleVal[${index}]" value="4"/>좋음</td>
-                                    <td><input type="radio" class="choice" name="multipleVal[${index}]" value="5"/>아주 좋음</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="str" name="quesNo" id="strNo" value="${vo.quesNo}">
-                                <h4 style="font-weight: normal;" id="reasonHeader" name="voQuesNO">사유를 작성해 주세요(필수).</h4>
-                                <textarea class="form-control" name="dissatisReason[${index}]" id="reason" type="text" style="width: 600px; height:80px;margin-bottom: 30px;" value=""></textarea>
-                            </div>
+                        <table class="table" style="margin-bottom: 35px;">
+                            <caption style="font-weight:bolder;font-size:1.8rem;">${count}. ${vo.quesName}</caption>
+                            <tbody>
+                            <tr>
+                                <td><input type="radio" class="choice" name="multipleVal[${index}]" value="1"/>아주 나쁨</td>
+                                <td><input type="radio" class="choice" name="multipleVal[${index}]" value="2"/>나쁨</td>
+                                <td><input type="radio" class="choice" name="multipleVal[${index}]" value="3"/>보통</td>
+                                <td><input type="radio" class="choice" name="multipleVal[${index}]" value="4"/>좋음</td>
+                                <td><input type="radio" class="choice" name="multipleVal[${index}]" value="5"/>아주 좋음</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="str" name="quesNo" id="strNo" value="${vo.quesNo}">
+                            <h4 style="font-weight: normal;" id="reasonHeader" name="voQuesNO">사유를 작성해 주세요(필수).</h4>
+                            <textarea class="form-control" id="dissatisReason" name="dissatisReason[${index}]" id="reason" type="text" style="width: 600px; height:80px;margin-bottom: 30px;" value=""></textarea>
                         </div>
-                        <c:set var="index" value="${index + 1}"/>
                     </c:if>
+                    <c:if test="${vo.type eq 2 }">
+                        <table class="table" style="margin-bottom: 35px;">
+                            <caption style="font-weight:bolder;font-size:1.8rem;">${count}. ${vo.quesName}</caption>
+                            <tbody>
+                            <tr>
+                                <td><textarea class="form-control" type="text" id="answer" name="answer[${index}]" style="width: 90%; height:100px;"></textarea></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </c:if>
+                    <c:set var="index" value="${index + 1}"/>
+                    </div>
                 </c:forEach>
             </div>
-            <c:forEach var="vo" items="${surveyVo}" varStatus="status">
-                <c:if test="${vo.type eq 2 }">
-                    <c:set var="count" value="${count + 1}"/>
-                    <div class="svPart">
-                        <h4 class="quesName" style="color:#777;font-weight:bolder;font-size:1.8rem;">${count}. ${vo.quesName}</h4>
-                        <input type="hidden" id="type" name="type[${index}]" value="${vo.type}">
-                        <input type="hidden" id="quesNo" name="quesNo[${index}]" value="${vo.quesNo}">
-                        <input type="hidden" id="quesName" name="quesName[${index}]" value="${vo.quesName}">
-                        <textarea class="form-control" type="text" id="answer" name="answer[${index}]" style="width: 90%; height:100px;"></textarea>
-                    </div>
-                    <br>
-                    <c:set var="index" value="${index + 1}"/>
-                </c:if>
-            </c:forEach>
         </form>
     </div>
 </div>
 <div style="text-align: center; padding-top: 10px;margin-bottom: 5%;">
-    <input type="button" id="surveyAdd" class="btn btn-lg btn-warning" onclick="formSubmit()" value="제출하기">
+    <input type="button" id="surveyAdd" class="btn btn-lg btn-warning" value="제출하기">
 </div>
 
 
@@ -109,75 +104,62 @@
 
     $('.choice').click(function () {
         if ($(this).val() >= 3) {
-            $(this).closest("div").find(".str").hide();
+            $(this).closest(".quesArea").find(".str").hide();
         } else {
-            $(this).closest("div").find(".str").show();
+            $(this).closest(".quesArea").find(".str").show();
         }
     });
 
-    $("#surveyAd").click(function () {
-
-        var quesName = [];
-        var quesNo = [];
-        var answer = [];
-        var dissatisReason = [];
+    $("#surveyAdd").click(function () {
+        var quesName = new Array();
+        var type = new Array();
+        var answer = new Array();
+        var multipleVal = new Array();
+        var dissatisReason = new Array();
 
         $(".quesName").each(function (i, e) {
-            quesName[i] = $(this).text();
-        });
-//console.log(quesName);
-
-        $("input[name=quesNo]").each(function (i, e) {
-            quesNo[i] = $(this).val();
-        });
-//quesNo[i] = $("#quesNo").val();
-//console.log(quesNo);
-
-        $("textarea[name=answer]").each(function (i, e) {
-            answer[i] = $(this).val();
-        });
-
-
-        /* $("textarea[name=dissatisReason]").each(function(i, e) {
-
-        if(typeof $("textarea[name=dissatisReason]").val() == ""){
-            //typeof someVariable == "string"
-            console.log(typeof $("textarea[name=dissatisReason]").val());
-
-          }
-        else{
-            dissatisReason[i] = $(this).val();
-            console.log(dissatisReason);
-          }
-        }); */
-
-
-        var multipleVal = [];
-        $("input[name=multipleVal]:checked").each(function (i, e) {
-            multipleVal[i] = $(this).val();
-
-            console.log($("input[name=multipleVal]:checked").val())
-            if ($("input[name=multipleVal]:checked").val() <= "2") {
-
-                console.log("나쁨단계사유")
-                console.log($(this).closest("textarea").find("$('textarea[name=dissatisReason]')").val());
-                dissatisReason[i] = $(this).$("textarea[name=dissatisReason]").val();
+            quesName.push($(this).val());
+            type.push($(this).closest(".quesArea").find(".type").val());
+            answer.push($(this).closest(".quesArea").find("#answer").val());
+            if (typeof $(this).closest(".quesArea").find(".choice:checked").val() != undefined) {
+                multipleVal.push($(this).closest(".quesArea").find(".choice:checked").val());
+            } else {
+                multipleVal.push(null);
             }
-        });
+            if ($(this).closest(".quesArea").find("#dissatisReason").val() != "") {
+                dissatisReason.push($(this).closest(".quesArea").find("#dissatisReason").val());
+            } else {
+                dissatisReason.push(null);
+            }
 
+        });
 
         var report = {
+            quesFormGroupNo : $("#quesFormGroupNo").val(),
             cateName: $("#cateName").val(),
             manager: $("#manager").val(),
-            companyNo: $("#selCompanyName").val(),
-            quesNo: quesNo,
+            companyNo: $("#selectCompany").val(),
             quesName: quesName,
+            type: type,
             multipleVal: multipleVal,
             dissatisReason: dissatisReason,
             answer: answer
         };
 
-        console.log(report)
+        $.ajax({
+            url: '/survey/surveyAdd',
+            type: "post",
+            data: JSON.stringify(report),
+            contentType: 'application/json',
+            success: function (result) {
+                if(result==1){
+                    console.log(result);
+                    console.log("ajax 저장완료!");
+                    surveyEnd();
+
+                }
+            }
+        });
 
     });
 
@@ -220,7 +202,7 @@
 					console.log(result);
 	                console.log("ajax 저장완료!");
 	                surveyEnd();
-					
+
 					}
            		 }
        	 });
