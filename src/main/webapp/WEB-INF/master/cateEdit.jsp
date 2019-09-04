@@ -229,7 +229,7 @@
         }
 
         $("#cateTitle").text("제목 수정");
-        $("#cateName").val(choiceCate);
+        $("#cateName").val(choiceCate.trim());
         $("#addBtn").hide();
         $("#updateBtn").show();
         $("#updateBtn").val(cateNo);

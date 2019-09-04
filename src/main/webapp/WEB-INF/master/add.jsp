@@ -80,8 +80,10 @@
     <!-- <p></p> -->
     <h3 style="font-weight: normal;" id="title">질문 제목</h3>
     <p><input type="text" id="Qtitle" name="Qtitle" style="width: 600px;" value=""></p>
+    <span>
     <input type="radio" name="Qtype" checked="checked" value="1" style="font-size:8px !important;"/> 객관식 &nbsp;&nbsp;&nbsp;
     <input type="radio" name="Qtype" value="2" style="font-size:8px !important;"/> 주관식
+    </span>
     <p></p>
     <div id="addBtnDiv" style="text-align: center; padding-top: 10px;">
     	<button class="btn btn-warning" id="addBtn" role="button">추가하기</button>
@@ -515,9 +517,9 @@
         }
 
         $("#title").text("수정 질문");
-        $("#Qtitle").val(choiceCate);
+        $("#Qtitle").val(choiceCate.trim());
         $("#addBtn").hide();
-        $("input[name=Qtype]").hide();
+        $("input[name=Qtype]").parent().hide();
         $("#updateBtn").show();
         $("#updateBtn").val(quesNo);
         
