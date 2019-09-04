@@ -2,7 +2,6 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="./top.jsp" %>
-<c:set var="index" value="0"/>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -172,7 +171,6 @@
 				</tr>
 			  </thead>
 			  <tbody id="finshTbody">
-				<c:set var="index" value="${index + 1}"/>
 				 
 			  </tbody>
 			</table>
@@ -180,7 +178,7 @@
 			 <div class = "buttonBox" style="margin-left: 45%;margin-top:5%;margin-bottom: 5%;">
 
 			<!-- <button type="button"  onclick="location.href='/master/survey_del'"  class="btn btn-default" style="width:80px;">삭제</button> -->
-
+			 </div>
 	  </div>
 
 
@@ -245,18 +243,18 @@
       })  
 	  
   }
-  
+  var index = 1;
 //확인하기 버튼처리 후 아래 내역 그리기.
   function finshSurveyList(result){
   	
   	//console.log(result);
   	
   	var str1 = "<tr>"
-          	 +	"<th scope='row' style='text-align:center;'><input type='hidden' name='cliGroupNo' value='"+ result.surveyGroupNo +"'>${index}</th>"
+          	 +	"<th scope='row' style='text-align:center;'><input type='hidden' name='cliGroupNo' value='"+ result.surveyGroupNo +"'>" + index++ + "</th>"
           	 +	"<td class='myModal' name='cliName' style='cursor:pointer;'>"+ result.companyName +"</td>"
           	 +	"<td>"+ result.surveyDate +"</td>"
           	 +	"<td name='cliManager'>"+ result.manager +"</td>"
-          	 +	"<td>80%</td>"
+          	 +	"<td>" + result.satisfaction + "%</td>"
           	 +	"</tr>";
   			
           	 $("#finshTbody").append(str1);
