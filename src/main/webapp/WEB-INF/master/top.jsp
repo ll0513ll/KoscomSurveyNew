@@ -31,6 +31,21 @@
     <script src="/assets/js/widgets.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
 
+    <script>
+        $( document ).ready(function() {
+            if ($(location).attr('pathname') == "/cateEdit/") {
+                $("#cateNav").addClass("active");
+            } else if ($(location).attr('pathname') == "/quesList/") {
+                $("#quesNav").addClass("active");
+            } else if ($(location).attr('pathname') == "/surveyURL/") {
+                $("#listNav").addClass("active");
+            } else if ($(location).attr('pathname') == "/surveyManage/") {
+                $("#manageNav").addClass("active");
+            } else {
+                $("#cateNav").addClass("active");
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -52,9 +67,11 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar" style="margin-top:30px;">
             <ul class="nav nav-sidebar">
-                <li id="cateNav" ><a href="/cateEdit/">제목 관리<span class="sr-only">(current)</span></a></li>
-                <li id="quesNav" class="active"><a href="/quesEdit/quesList">질문 관리</a></li>
+                <li id="cateNav"><a href="/cateEdit/">제목 관리<span class="sr-only">(current)</span></a></li>
+                <li id="quesNav"><a href="/quesEdit/quesList">질문 관리</a></li>
                 <li id="listNav"><a href="/surveyURL/">설문조사지 내역</a></li>
                 <li id="manageNav"><a href="/surveyManage/">설문조사 관리</a></li>
             </ul>
         </div>
+
+
