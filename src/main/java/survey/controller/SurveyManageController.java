@@ -36,8 +36,6 @@ public class SurveyManageController {
 	@RequestMapping(value="/getSelectSurvey", method= {RequestMethod.GET,RequestMethod.POST})
 	public List<surveyVO> getSelectSurvey(@RequestParam(value="surveyNo") int surveyNo)  throws Exception{
 		
-		System.out.println("설문지 선택후 컨트롤러");
-		System.out.println(surveyNo);
 		return manageService.getSelectSurvey(surveyNo);
 	}
 	

@@ -8,18 +8,20 @@ public class surveyVO {
 		private int quesNo;
 		private int quesFormGroupNo;
 		private String quesName;
-		private String cateName;
-		private String companyName;
-		private String manager;
-		private String surveyDate;
-		private int type;
-		private int satisVal;
-		private String dissatisReason;
-		private String answer;
-		private int participate;
+		private String cateName;//설문지 제목
+		private String companyName;//회사이름
+		private String manager;//설문조사에 참여한 담당 직원
+		private String surveyDate;//설문조사 제출한 날짜
+		private int type;//객관식 주관식 타입
+		private int satisVal;//객관식 선택
+		private String dissatisReason;//객관식 나쁨이상 선택시 사유
+		private String answer;//주관식 답변
+		private int participate;//참여여부
+		private int satisfaction;//만족도
 		private long surveyFormNo;
 	    private long surveyFormGroupNo;
 	    private int orderNo;
+	    private int quesCount;
 		
 
 		
@@ -31,7 +33,7 @@ public class surveyVO {
 
 		public surveyVO(int surveyNo, int companyNo, int surveyGroupNo,int quesNo, int quesFormGroupNo, String quesName, String cateName,
 				String companyName, String manager, String surveyDate, int type, int satisVal, String dissatisReason,
-				String answer, int participate, long surveyFormNo, long surveyFormGroupNo, int orderNo) {
+				String answer, int participate,int satisfaction, long surveyFormNo, long surveyFormGroupNo, int orderNo,int quesCount) {
 			super();
 			this.surveyNo = surveyNo;
 			this.companyNo = companyNo;
@@ -48,9 +50,11 @@ public class surveyVO {
 			this.dissatisReason = dissatisReason;
 			this.answer = answer;
 			this.participate = participate;
+			this.satisfaction = satisfaction;
 			this.surveyFormNo = surveyFormNo;
 			this.surveyFormGroupNo = surveyFormGroupNo;
 			this.orderNo = orderNo;
+			this.quesCount = quesCount;
 		}
 
 
@@ -235,6 +239,18 @@ public class surveyVO {
 
 
 
+		public int getSatisfaction() {
+			return satisfaction;
+		}
+
+
+
+		public void setSatisfaction(int satisfaction) {
+			this.satisfaction = satisfaction;
+		}
+
+
+
 		public long getSurveyFormNo() {
 			return surveyFormNo;
 		}
@@ -269,6 +285,19 @@ public class surveyVO {
 			this.orderNo = orderNo;
 		}
 
+		
+
+
+		public int getQuesCount() {
+			return quesCount;
+		}
+
+
+
+		public void setQuesCount(int quesCount) {
+			this.quesCount = quesCount;
+		}
+
 
 
 		@Override
@@ -277,9 +306,11 @@ public class surveyVO {
 					+ ", quesNo=" + quesNo + ", quesFormGroupNo=" + quesFormGroupNo + ", quesName=" + quesName
 					+ ", cateName=" + cateName + ", companyName=" + companyName + ", manager=" + manager
 					+ ", surveyDate=" + surveyDate + ", type=" + type + ", satisVal=" + satisVal + ", dissatisReason="
-					+ dissatisReason + ", answer=" + answer + ", participate=" + participate + ", surveyFormNo="
-					+ surveyFormNo + ", surveyFormGroupNo=" + surveyFormGroupNo + ", orderNo=" + orderNo + "]";
+					+ dissatisReason + ", answer=" + answer + ", participate=" + participate + ", satisfaction="
+					+ satisfaction + ", surveyFormNo=" + surveyFormNo + ", surveyFormGroupNo=" + surveyFormGroupNo
+					+ ", orderNo=" + orderNo + ", quesCount=" + quesCount + "]";
 		}
+
 
 
 }

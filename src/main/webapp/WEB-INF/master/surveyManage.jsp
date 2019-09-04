@@ -169,21 +169,11 @@
 				  <th>제출 일</th>
 				  <th>담당자</th>
 				  <th>만족도 지수</th>
-				  <th>불만족도 지수</th>
 				</tr>
 			  </thead>
-			  <tbody>
-				<c:forEach var="surveyList" items="${surveyList}" varStatus="status">
+			  <tbody id="finshTbody">
 				<c:set var="index" value="${index + 1}"/>
-				 <tr>
-					  <th scope="row" style="text-align:center;"><input type="hidden" name="cliGroupNo" value="${surveyList.surveyGroupNo}">${index}</th>
-					  <td class="myModal" name="cliName" style="cursor:pointer;">${surveyList.companyName}</td>
-					  <td>${surveyList.surveyDate}</td>
-					  <td name="cliManager">${surveyList.manager}</td>
-					  <td>80%</td>
-					  <td>0%</td>
-				</tr>
-				</c:forEach>
+				 
 			  </tbody>
 			</table>
 
@@ -202,6 +192,9 @@
 	var surveyTop = $("#selectCate option:selected").text();
 	$("#selectSurvey").text(surveyTop);
 	
+	selectSurveyList();
+	
+	
 	
   });
   $(".myModal").on('click',function (cliName,cliManager) {
@@ -215,6 +208,13 @@
   
   $("#getSurvey").on('click',function () {
 	  
+	  selectSurveyList();
+	  
+  });
+  
+  //선택된 설문조사 완료 설문 가져오기
+  function selectSurveyList(){
+	  
 	  var surveyNo = $("#selectCate option:selected").val();
 	  console.log($("#selectCate option:selected").val());
 	  
@@ -224,8 +224,16 @@
           data: {"surveyNo": surveyNo},
           dataType: "json",
           success: function (result) {
-              alert("선택 설문지 참여 리스트 가져오기 성공");
               console.log(result);
+              $("#finshTbody").empty();
+              $("#selectSurvey").text("");
+              $("#selectSurvey").text(result[0].cateName);
+             
+              for(var i = 0; i < result.length; i++){
+            	  
+ 	             finshSurveyList(result[i]);
+            	  
+              }
               
 
           },
@@ -234,9 +242,26 @@
                   request.responseText + "\n" + "error:" + error);
           }
 
-      })
+      })  
 	  
-  });
+  }
+  
+//확인하기 버튼처리 후 아래 내역 그리기.
+  function finshSurveyList(result){
+  	
+  	//console.log(result);
+  	
+  	var str1 = "<tr>"
+          	 +	"<th scope='row' style='text-align:center;'><input type='hidden' name='cliGroupNo' value='"+ result.surveyGroupNo +"'>${index}</th>"
+          	 +	"<td class='myModal' name='cliName' style='cursor:pointer;'>"+ result.companyName +"</td>"
+          	 +	"<td>"+ result.surveyDate +"</td>"
+          	 +	"<td name='cliManager'>"+ result.manager +"</td>"
+          	 +	"<td>80%</td>"
+          	 +	"</tr>";
+  			
+          	 $("#finshTbody").append(str1);
+  		
+  }
 </script>
 
 <%@ include file="./bottom.jsp" %>

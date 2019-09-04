@@ -9,11 +9,11 @@
             <div class="modal-header" style="padding-bottom: 0px;height: 56px;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">카테고리 삭제 확인.</h4><br>
+                <h4 class="modal-title" id="myModalLabel">설문 제목 삭제 확인.</h4><br>
             </div>
             <div class="modal-body" style="text-align:center;">
                 <input type="hidden" name="modalDel" value="">
-                <h5 style="margin-top: 30px;">해당 카테고리를 삭제 할 경우 관련 설문이 모두 삭제됩니다.</h5><br>
+                <h5 style="margin-top: 30px;">해당 설문 제목을 삭제 할 경우 관련 설문이 모두 삭제됩니다.</h5><br>
                 <h5>삭제 하시겠습니까?</h5>
                 <div class="buttonBox" style="margin-top:10%;margin-bottom: 5%;">
 
@@ -53,7 +53,7 @@
     <div class="row marketing">
         <div style="text-align: left;">
             <table class="table table-striped" id="cateListTable">
-                <thead><h3 style=" margin-bottom: 20px;">카테고리 리스트</h3></thead>
+                <thead><h3 style=" margin-bottom: 20px;">설문지 제목 리스트</h3></thead>
                 <tbody>
                 <c:forEach items="${cateList}" var="vo">
                     <tr>

@@ -1,10 +1,16 @@
 package survey.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import survey.model.userVO;
+import survey.service.MasterService;
 
 
 @Controller
@@ -12,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class MasterController {
 	
+	@Autowired
+	MasterService masterService;
 	
 	@RequestMapping(value="/main", method= {RequestMethod.GET,RequestMethod.POST})
 	public String main() {
@@ -20,8 +28,21 @@ public class MasterController {
 	
 
 	@RequestMapping(value="/login", method= {RequestMethod.GET,RequestMethod.POST})
-	public String login() {
-		return "master/add";
+	public String login(@ModelAttribute userVO userVo,HttpSession session) {
+		
+		System.out.println("로그인 컨트롤러");
+		System.out.println(userVo);
+		//return "redirect:/cateEdit/";
+		userVO authUser =  masterService.checkLogin(userVo);
+		
+		if (authUser != null) {
+			session.setAttribute("authUser", authUser);
+			return "redirect:/cateEdit/";
+		} else {
+			return "redirect:/master/main?result=fail";
+		}
+			
+		
 	}
 	
 	

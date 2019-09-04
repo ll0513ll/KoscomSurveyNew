@@ -211,7 +211,7 @@
 
     function surveyEnd() {
 
-        location.href = "thanks.jsp"
+        location.href = "/survey/thanks"
     }
 
 </script>

@@ -3,9 +3,9 @@ package survey.model;
 
 public class userVO {
 	
-	private int user_no;
+	private int userNo;
 	
-	private String user_name;
+	private String userName;
 	
 	private String email;
 	
@@ -19,29 +19,30 @@ public class userVO {
 
 	}
 
-	public userVO(int user_no, String user_name, String email, String password, String department, String telephone) {
-		this.user_no = user_no;
-		this.user_name = user_name;
+	public userVO(int userNo, String userName, String email, String password, String department, String telephone) {
+		super();
+		this.userNo = userNo;
+		this.userName = userName;
 		this.email = email;
 		this.password = password;
 		this.department = department;
 		this.telephone = telephone;
 	}
 
-	public int getUser_no() {
-		return user_no;
+	public int getUserNo() {
+		return userNo;
 	}
 
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {
@@ -78,10 +79,8 @@ public class userVO {
 
 	@Override
 	public String toString() {
-		return "userVO [user_no=" + user_no + ", user_name=" + user_name + ", email=" + email + ", password=" + password
+		return "userVO [userNo=" + userNo + ", userName=" + userName + ", email=" + email + ", password=" + password
 				+ ", department=" + department + ", telephone=" + telephone + "]";
 	}
-	
-	
 	
 }

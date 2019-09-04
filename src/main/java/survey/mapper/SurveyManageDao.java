@@ -25,4 +25,13 @@ public class SurveyManageDao {
 		return sqlSession.selectList("getSelectSurvey",surveyNo);
 	}
 
+	public List<surveyVO> getQusCount(int surveyNo){
+		
+		return sqlSession.selectList("getQusCount",surveyNo);
+	}
+	
+	public List<surveyVO> getSatisVal(int surveyNo){
+		
+		return sqlSession.selectList("getSatisVal",surveyNo);
+	}
 }

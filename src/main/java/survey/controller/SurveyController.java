@@ -59,7 +59,7 @@ public class SurveyController {
 		return result;
 	}
 	
-	@RequestMapping(value="thanks", method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/thanks", method= {RequestMethod.GET,RequestMethod.POST})
 	public String thanksView() {
 		
 		return "master/thanks";

@@ -37,8 +37,8 @@
     
     <insert id="surveyAdd" parameterType="survey.model.surveyVO">
 	    <![CDATA[
-	    	INSERT INTO survey(surveyGroupNo,companyNo,manager,type,quesName,answer,dissatisReason,satisVal,participate,surveyDate) 
-        	VALUES(#{quesFormGroupNo},#{companyNo},#{manager},#{type},#{quesName},#{answer},#{dissatisReason},#{satisVal},1,NOW())
+	    	INSERT INTO survey(surveyGroupNo,cateName,companyNo,manager,type,quesName,answer,dissatisReason,satisVal,participate,surveyDate)
+        	VALUES(#{quesFormGroupNo},#{cateName},#{companyNo},#{manager},#{type},#{quesName},#{answer},#{dissatisReason},#{satisVal},1,NOW())
 	    ]]>
     
     

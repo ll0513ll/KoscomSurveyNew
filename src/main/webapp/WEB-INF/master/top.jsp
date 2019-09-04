@@ -52,9 +52,9 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar" style="margin-top:30px;">
             <ul class="nav nav-sidebar">
-                <li><a href="/cateEdit/">제목 관리<span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="/quesEdit/quesList">질문 관리</a></li>
-                <li><a href="/surveyURL/">설문조사지 내역</a></li>
-                <li><a href="/surveyManage/">설문조사 관리</a></li>
+                <li id="cateNav" ><a href="/cateEdit/">제목 관리<span class="sr-only">(current)</span></a></li>
+                <li id="quesNav" class="active"><a href="/quesEdit/quesList">질문 관리</a></li>
+                <li id="listNav"><a href="/surveyURL/">설문조사지 내역</a></li>
+                <li id="manageNav"><a href="/surveyManage/">설문조사 관리</a></li>
             </ul>
         </div>
