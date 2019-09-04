@@ -35,7 +35,7 @@
         $( document ).ready(function() {
             if ($(location).attr('pathname') == "/cateEdit/") {
                 $("#cateNav").addClass("active");
-            } else if ($(location).attr('pathname') == "/quesList/") {
+            } else if ($(location).attr('pathname') == "/quesEdit/quesList") {
                 $("#quesNav").addClass("active");
             } else if ($(location).attr('pathname') == "/surveyURL/") {
                 $("#listNav").addClass("active");
