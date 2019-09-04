@@ -14,7 +14,6 @@
 			<div class="col-lg">
 				<div style = "width: 100%; height:150px; background-color: #eee;margin-bottom: 30px;">
 					<div style = "margin-top: 20px;margin-bottom: 20px;margin-left: 10%;padding-top: 55px;border-top-width: 30px;">
-					<input type="text" value="">
 						 <table  style="width: 500px;float:left;">
 							<tr>
 								<th style = "font-size:1.5rem;width: 80px;color: inherit;">증권사 : </th>
@@ -191,18 +190,73 @@
 	$("#selectSurvey").text(surveyTop);
 	
 	selectSurveyList();
-	
-	
+
+	  $(document).on("click",".myModal",function(){
+
+		  $.ajax({
+			  url: "/surveyManage/getResultSurvey",
+			  type: "post",
+			  data: JSON.stringify({"surveyNo": $(this).parent().children("[name=surveyGroupNo]").val(), "companyNo": $(this).parent().children("[name=companyNo]").val()}),
+			  dataType: "json",
+			  contentType: 'application/json',
+			  success: function (survey) {
+			  	
+			  	var modalData = "<div class=\"col-lg\">" +
+						"<div style = \"width: 100%; height:150px; background-color: #eee;margin-bottom: 30px;\">" +
+						"<div style = \"margin-top: 20px;margin-bottom: 20px;margin-left: 10%;padding-top: 55px;border-top-width: 30px;\">" +
+						"<table  style=\"width: 500px;float:left;\">" +
+						"<tr>" +
+						"<th style = \"font-size:1.5rem;width: 80px;color: inherit;\">증권사 : " + survey[0].companyName + "</th>" +
+						"<td id = \"cliName\" style = \"font-size:3rem;\"></td>" +
+						"<th style = \"font-size:1.5rem;width: 80px;\">담당자 : " + survey[0].manager + "</th>" +
+						"<td id = \"cliManager\" style = \"font-size:3rem;color: inherit;\"></td>" +
+						"</tr>\n" +
+						"</table>\n" +
+						"</div>\n" +
+						"</div>";
+			  	
+				$.each(survey, function(i,o) {
+					console.log(o);
+
+					if (o.type == 1) {
+						modalData += "<h4>" + o.quesName + "</h4>" +
+								"<table class=\"table\" style=\"margin-bottom: 35px;\">" +
+								"<tbody>" +
+								"<tr>" +
+								"<td><input type=\"radio\" value=\"1\" " + (o.satisVal==1?"checked":"") + "/>아주 나쁨</td>" +
+								"<td><input type=\"radio\" value=\"2\" " + (o.satisVal==2?"checked":"") + "/>나쁨</td>" +
+								"<td><input type=\"radio\" value=\"3\" " + (o.satisVal==3?"checked":"") + "/>보통</td>" +
+								"<td><input type=\"radio\" value=\"4\" " + (o.satisVal==4?"checked":"") + "/>좋음</td>" +
+								"<td><input type=\"radio\" value=\"5\" " + (o.satisVal==5?"checked":"") + "/>아주 좋음</td>" +
+								"</tr>" +
+								"</tbody>" +
+								"</table>";
+						if (o.satisVal < 3) {
+							modalData += "<p><textarea class=\"form-control\" type=\"text\" style = \"width: 90%; height:100px;\">" +
+									o.dissatisReason +
+									"</textarea></p>";
+						}
+					} else {
+						modalData += "<h4>" + o.quesName + "</h4>" +
+								"<p><textarea class=\"form-control\" type=\"text\" style = \"width: 90%; height:100px;\">" +
+								o.answer +
+								"</textarea></p>";
+					}
+					
+				});
+				  modalData += "</div>";
+				$(".modal-body").html(modalData);
+				$("#myModal").modal();
+			  },
+			  error: function (request, status, error) {
+				  alert("code:" + request.status + "\n" + "message:" +
+						  request.responseText + "\n" + "error:" + error);
+			  }
+
+		  });
+	  });
 	
   });
-  $(".myModal").on('click',function (cliName,cliManager) {
-		
-	  	console.log($(this).parent().children("input[name=cliGroupNo]").val());
-	    $("#surveyNo").val($(this).parent().children("[name=cliGroupNo]").val());
-		$("#cliName").text($(this).parent().children("[name=cliName]").text());
-		$("#cliManager").text($(this).parent().children("[name=cliManager]").text());
-		$("#myModal").modal();
-	});
   
   $("#getSurvey").on('click',function () {
 	  
@@ -246,11 +300,11 @@
   var index = 1;
 //확인하기 버튼처리 후 아래 내역 그리기.
   function finshSurveyList(result){
-  	
-  	//console.log(result);
-  	
+  	console.log(result);
   	var str1 = "<tr>"
-          	 +	"<th scope='row' style='text-align:center;'><input type='hidden' name='cliGroupNo' value='"+ result.surveyGroupNo +"'>" + index++ + "</th>"
+			 + "<input type='hidden' name='surveyGroupNo' value='"+ result.surveyGroupNo +"'>"
+			 + "<input type='hidden' name='companyNo' value='"+ result.companyNo +"'>"
+          	 +	"<th scope='row' style='text-align:center;'>" + index++ + "</th>"
           	 +	"<td class='myModal' name='cliName' style='cursor:pointer;'>"+ result.companyName +"</td>"
           	 +	"<td>"+ result.surveyDate +"</td>"
           	 +	"<td name='cliManager'>"+ result.manager +"</td>"

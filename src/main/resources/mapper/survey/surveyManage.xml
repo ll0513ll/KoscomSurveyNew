@@ -14,6 +14,7 @@
 	<select id="getSelectSurvey" parameterType="int" resultType="survey.model.surveyVO">
 		<![CDATA[
 			select
+				surveyGroupNo,
 				companyNo,
 				max(surveyDate) as surveyDate,
 				max(manager) as manager,
@@ -24,8 +25,18 @@
 			group by companyNo
 			order by surveyDate
 		]]>
-		
-		
+	</select>
+
+	<select id="getResultSurvey" parameterType="survey.model.surveyVO" resultType="survey.model.surveyVO">
+		<![CDATA[
+			select
+				*,
+				(select companyName from company where survey.companyNo = company.companyNo) as companyName
+			from survey
+			where surveyGroupNo = #{surveyNo}
+			and companyNo = #{companyNo}
+
+		]]>
 	</select>
 
 	<select id="getQusCount" parameterType="int" resultType="int">

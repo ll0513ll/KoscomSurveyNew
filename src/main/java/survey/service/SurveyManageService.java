@@ -37,4 +37,7 @@ public class SurveyManageService {
 		 return result;
 	}
 
+	public List<surveyVO> getResultSurvey(surveyVO surveyVO) {
+		return manageDao.getResultSurvey(surveyVO);
+	}
 }
