@@ -31,7 +31,7 @@
    			<td colspan="2"style="background-color: #f8f5f5;">설문 기간</td>
 		</tr>
 		<tr>
-			<td name="urlVal" style="padding-top: 20px;"><a href="/survey/?quesFormGroupNo=${vo.surveyFormGroupNo}">http://localhost:8080/surveyURL/?surveyFormGroupNo=${vo.surveyFormGroupNo}</a>
+			<td name="urlVal" style="padding-top: 20px;"><a class="sendUrlList" target="_blank" href="/survey/?quesFormGroupNo=${vo.surveyFormGroupNo}&master=true">http://localhost:8080/surveyURL/?surveyFormGroupNo=${vo.surveyFormGroupNo}</a>
 			</td>
 			<td name="copyBtnTd">
 				<button type="button" name="copyBtn" class="btn btn-default btn-xs" style="margin-top: 5px; margin-left: 5px;">복사</button>
@@ -39,8 +39,7 @@
 			<td class="dateTd">
 				${vo.startDate}&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;${vo.endDate}
 			</td>
-			<td class="str">${vo.startDate}&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
-				<input type="date" name="end">
+			<td class="str">${vo.startDate}&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="date" class="date" name="endDate">
 			</td>
 			<td>
 				<button type="button" name="dateBtn" class="btn btn-default btn-xs" style="margin-top: 5px; margin-left: 5px;" value="${vo.startDate}">수정</button>
@@ -107,9 +106,6 @@
 	
 	$("button[name=dateBtn]").on("click", function () {
 	
-		console.log($(this));
-		console.log($(this).parents().prev().prev().html());
-		
 		$(this).parents().prev(".str").show();
 		$(this).parent().prev().prev().hide();
 		$(this).hide();
@@ -119,12 +115,11 @@
 	});
 	
 	$("button[name=addBtn]").on("click", function () {
-		
-		
-		var report = {
-					endDate : $("input[name=end]").val(),
-					surveyFormGroupNo : $("input[name=surveyNo]").val()
-		}
+		console.log($(this).parent().prev().children(".date").val());
+		var report = {endDate : $(this).parent().prev().children(".date").val(),
+					  startDate : $(this).val(),
+					  surveyFormGroupNo : $("input[name=surveyNo]").val()
+					 }
 		
 		console.log(report);
 	 	
@@ -151,6 +146,7 @@
 		location.href = "?pageNo="+pageNo;
 	}
 	
+
 	
 </script>
 

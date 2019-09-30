@@ -141,7 +141,7 @@
             type: "get",
             dataType: "json",
             success: function (cateList) {
-
+				console.log(cateList);
                 $("#cateListTable").empty();
                 $("input[name='addCateName']").val("")
                 $("textarea[name='addCateInfo']").val("")
@@ -164,13 +164,12 @@
 
         //카테고리 리스트 테이블 그리기.
         function renderApplied(cateList) {
-            var str = "";
-            str += "<tr data-careerno='" + cateList.cateNo + "'>";
-            str += "<td name='cateInfo' style='font-weight: bold;font-size:14px;' title='" + cateList.cateInfo + "'><input name='cateName' type='checkbox' value='" + cateList.cateNo + "'>&nbsp;&nbsp;&nbsp;" + cateList.cateName + "</td>";
-            $("#cateListTable").append(str);
-
-        }
-    }
+             var str = "<tr data-careerno='" + cateList.cateNo + "'>"
+          			+ "<td name='cateInfo' value='"+ cateList.cateInfo +"' style='font-weight: bold;font-size:14px;' title='" + cateList.cateInfo + "'><input type='hidden' name='hiddenInfo' value='"+ cateList.cateInfo +"'><input class='Qchoice' name='cateName' type='checkbox' value='" + cateList.cateNo + "'>&nbsp;&nbsp;&nbsp;" + cateList.cateName + "</td>";
+          
+          			$("#cateListTable").append(str);
+	        }
+	   	 }
 
 
     //삭제 모달내부 삭제버튼 누를때
@@ -211,11 +210,11 @@
     //수정버튼 누를때
     $("#editBtn").click(function () {
     	//<input class="Qchoice" name="cateName" type="checkbox" value="${vo.cateNo}">&nbsp;&nbsp;&nbsp;${vo.cateName}
-        var choiceCate = $("input[class=Qchoice]:checked").parent().text();
+        var choiceCate = $("input[name=cateName]:checked").parent().text();
         console.log(choiceCate);
         choiceCate.replace(/^\s*/, "") ;
         
-        var cateInfo = $("input[class=Qchoice]:checked").prev().val();
+        var cateInfo = $("input[name=cateName]:checked").siblings().val();
         console.log(cateInfo);
         
         var count = $("input[name=cateName]:checked").length;
@@ -258,7 +257,8 @@
                 console.log(result)
                 if (result >= 1) {
                 	alert("제목이 수정되었습니다.");
-                	location.reload();
+                	//location.reload();
+                	getCateList();
                 }
             },
             error: function () {

@@ -22,7 +22,7 @@
 	<select id="getSurvey" resultType="int">
 		 <![CDATA[
 		 
-		 SELECT surveyFormroupNo FROM surveyformgroup  ORDER BY regDate DESC limit 1
+		 SELECT surveyFormGroupNo FROM surveyformgroup  ORDER BY regDate DESC limit 1
 		 
 		 ]]>
 	</select>

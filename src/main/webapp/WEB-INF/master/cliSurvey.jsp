@@ -1,7 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="./top.jsp" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>설문조사 편집</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- sidebar styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+    
+    <link href="/css/style.css" rel="stylesheet">
+
+
+    <script src="/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/widgets.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container" style="margin-top:30px;">
 <c:set var="index" value="0"/>
 <c:set var="count" value="0"/>
 <!-- Modal -->
@@ -38,15 +72,19 @@
             	<input type="hidden" id="quesFormGroupNo" name="quesFormGroupNo" value="${quesFormGroupNo}">
                 <h2 id="HcateName" name="HcateName" style="margin-top: 0px; margin-bottom: 4%;color: inherit;"
                     value="${surveyVo[0].cateName}">${surveyVo[0].cateName}</h2>
-                <p><select class="form-control" id="selectCompany" name="companyNo"
+                  <p>
+                  	<input type="hidden" name="companyNo" id="selectCompany" value="${company.companyNo}">
+                  	<input type="text"  readonly id="cliCompany" name="companyName" value="&nbsp&nbsp&nbsp ${company.companyName}" style="width: 250px;height:38px;font-size:1.5rem;">
+                  </p> 
+                <%-- <p><select class="form-control" id="selectCompany" name="companyNo"
                            style="width: 250px; margin: 0 auto;">
                     <option id="choicCompany">회사를 선택하세요.</option>
-                    <c:forEach var="vo" items="${cliVo}" varStatus="status">
+                    <c:forEach var="vo" items="${companyVO}" varStatus="status">
                         <c:set var="index" value="${index + 1}"/>
                         <option name="selCompanyName[${index}]" value="${vo.companyNo}">${vo.companyName}</option>
                         <!-- <p><input type="text" id="companyName" name = "companyName" placeholder="회사명" style = "width: 250px;height:38px;font-size:1.5rem;"></p> -->
                     </c:forEach>
-                </select></p>
+                </select></p> --%>
                 <p><input type="text" id="manager" name="manager" placeholder="&nbsp&nbsp&nbsp담당자"
                           style="width: 250px;height:38px;font-size:1.5rem;"></p>
             </div>
@@ -91,15 +129,26 @@
         </form>
     </div>
 </div>
+<c:if test="${param.master ne 'true' }">
 <div style="text-align: center; padding-top: 10px;margin-bottom: 5%;">
     <input type="button" id="surveyAdd" class="btn btn-lg btn-warning" value="제출하기">
 </div>
-
+</c:if>
+<c:if test="${param.master eq 'true' }">
+	<p class="form-error" style="color:red;text-align: center;">
+	관리자는 설문지를 제출할 수 없습니다.
+	</p>
+	<div style="text-align: center; padding-top: 10px;margin-bottom: 5%;">
+	    <input type="button" class="btn btn-default" value="Close" onclick="self.close()">
+	</div>
+</c:if>
+</div>
 
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".str").hide();
+       
     });
 
     $('.choice').click(function () {
@@ -154,9 +203,12 @@
             success: function (result) {
                 if(result==1){
                     console.log(result);
-                    console.log("ajax 저장완료!");
+                    console.log("설문지 저장완료!");
                     surveyEnd();
 
+                }
+                else if(result==10){
+                	 alert("귀하의 기업은 이미 설문에 참여하셨습니다.");
                 }
             }
         });

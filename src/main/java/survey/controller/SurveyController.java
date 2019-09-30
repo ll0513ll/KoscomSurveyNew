@@ -9,8 +9,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import survey.model.cliVO;
 import survey.model.companyVO;
 import survey.model.surveyParamVo;
 import survey.model.surveyVO;
@@ -31,22 +36,42 @@ public class SurveyController {
 	@Autowired
 	CompanyService companyService;
 	
+	@Autowired
+	MasterController masterController;
+	
 	@RequestMapping(value="/", method= {RequestMethod.GET,RequestMethod.POST})
-	public String cliSurvey(
-							@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo,
+	public String masterSurvey(@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo, @RequestParam(value="master",required=false) boolean master,
 							Model model)throws Exception {
-		System.out.println("실제 설문지 페이지 컨트롤러");
-		System.out.println(quesFormGroupNo);
+		if(master != true) {
+			model.addAttribute("quesFormGroupNo", quesFormGroupNo);
+			return "redirect:/master/cliLogin";
+		}
 		List<surveyVO> surveyVo = surveyService.getQuesList(quesFormGroupNo);
 		List<companyVO> cliVo = companyService.getCompanyList();
-		System.out.println(surveyVo);
-		System.out.println(cliVo);
 		model.addAttribute("cliVo", cliVo);
 		model.addAttribute("surveyVo", surveyVo);
 		model.addAttribute("quesFormGroupNo", quesFormGroupNo);
 		
 		return "master/cliSurvey";
 	}
+	
+	/*@RequestMapping(value="aftercheckSurvey", method= {RequestMethod.GET,RequestMethod.POST})
+	public String cliSurvey(@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo,
+							@RequestParam(value="cliVo",required=false) cliVO cliVo,Model model)throws Exception {
+		
+		System.out.println("고객로그인하고 설문지 접속");
+		System.out.println(quesFormGroupNo);
+		List<surveyVO> surveyVo = surveyService.getQuesList(quesFormGroupNo);
+		System.out.println(cliVo);
+		String resultCompanyName = companyService.getCompany(cliVo);
+		System.out.println(resultCompanyName);
+		model.addAttribute("surveyVo", surveyVo);
+		model.addAttribute("companyName", resultCompanyName);
+		model.addAttribute("quesFormGroupNo", quesFormGroupNo);
+		
+		return "master/cliSurvey";
+	}*/
+	
 	
 	@ResponseBody
 	@RequestMapping(value="surveyAdd", method= {RequestMethod.GET,RequestMethod.POST})

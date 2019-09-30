@@ -50,7 +50,7 @@
             </p>
             <br>
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">설문 종료</a>
+              <a href="#" class="btn btn-lg btn-default" onClick="window.close()">설문 종료</a>
             </p>
           </div>
 
@@ -74,6 +74,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    <script src="/bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    
+    
     <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
   
 

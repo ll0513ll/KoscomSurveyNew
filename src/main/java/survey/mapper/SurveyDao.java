@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import survey.model.surveyParamVo;
 import survey.model.surveyVO;
 
 @Repository
@@ -19,10 +20,18 @@ public class SurveyDao {
 	    return sqlSession.selectList("quesList",quesFormGroupNo);
 	}
 	
+	public int duplCheck(surveyParamVo surveyParam) {
+		System.out.println("설문 기참여 여부 체크");
+		return sqlSession.selectOne("duplCheck",surveyParam);
+	}
+	
 	public int surveyAdd(surveyVO surveyVo) {
 		 
 		System.out.println("설문완료 추가 다오");
-		 return sqlSession.insert("surveyAdd",surveyVo);
+		System.out.println(surveyVo);
+			
+	    return sqlSession.insert("surveyAdd",surveyVo);
+		
 	}
 
 }

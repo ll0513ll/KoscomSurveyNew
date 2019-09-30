@@ -14,4 +14,14 @@
         	ORDER BY companyNo DESC 
         ]]>
     </select>
+    
+    <select id="getCompanyName" parameterType="survey.model.cliVO" resultType="survey.model.cliVO">
+ 		<![CDATA[
+        	SELECT 
+        		   companyName,companyNo
+        	FROM 
+        		   company
+        	WHERE companyNo = #{companyNo}
+        ]]>
+    </select>
  </mapper>

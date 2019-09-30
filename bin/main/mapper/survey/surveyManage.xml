@@ -5,30 +5,41 @@
 
 	<select id="getSurveyList" resultType="survey.model.surveyVO">
 		<![CDATA[
-		 SELECT DISTINCT surveyGroupNo,cateName,quesName,manager,surveyDate,type,answer,dissatisReason,satisVal,companyName
-		 FROM survey
-		 JOIN company
-		 ON survey.companyNo = company.companyNo
-		 group by surveyGroupNo
-		 ORDER BY surveyGroupNo DESC
+			select surveyGroupNo, max(cateName) as cateName from survey
+			group by surveyGroupNo
+			order by surveyGroupNo desc;
 		]]>
 	</select>
 	
 	<select id="getSelectSurvey" parameterType="int" resultType="survey.model.surveyVO">
 		<![CDATA[
-		 SELECT surveyGroupNo,cateName,quesName,manager,surveyDate,type,answer,dissatisReason,satisVal,companyName
-		 FROM survey
-		 JOIN company
-		 ON survey.companyNo = company.companyNo
-		 WHERE survey.surveyGroupNo = #{surveyNo}
-		 group by companyName
-		 ORDER BY surveyDate DESC
-		 
+			select
+				surveyGroupNo,
+				companyNo,
+				cateName,
+				max(surveyDate) as surveyDate,
+				max(manager) as manager,
+				(select companyName from company where survey.companyNo = company.companyNo) as companyName,
+				(select round(avg(satisVal*20)) from survey as ss where ss.surveyGroupNo = surveyGroupNo and ss.companyNo = survey.companyNo and type = 1) as satisfaction
+			from survey
+			where survey.surveyGroupNo = #{surveyNo}
+			group by companyNo
+			order by surveyDate
 		]]>
-		
-		
 	</select>
-	
+
+	<select id="getResultSurvey" parameterType="survey.model.surveyVO" resultType="survey.model.surveyVO">
+		<![CDATA[
+			select
+				*,
+				(select companyName from company where survey.companyNo = company.companyNo) as companyName
+			from survey
+			where surveyGroupNo = #{surveyNo}
+			and companyNo = #{companyNo}
+
+		]]>
+	</select>
+
 	<select id="getQusCount" parameterType="int" resultType="int">
 		<![CDATA[
 			SELECT COUNT(quesName)
@@ -38,13 +49,12 @@
 			group by companyNo
 		]]>
 	</select>
-	
+
 	<select id="getSatisVal" parameterType="int" resultType="int">
 		<![CDATA[
 			SELECT satisVal
 			FROM survey
 			WHERE surveyGroupNo = #{surveyNo}
-			group by companyNo
 		]]>
 	</select>
 

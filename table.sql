@@ -77,3 +77,15 @@ CREATE TABLE `user` (
   `telephone` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`userNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `client` (
+  `cliNo` int(50) NOT NULL,
+  `companyNo` int(11) DEFAULT NULL,
+  `cliName` varchar(100) DEFAULT NULL,
+  `cliEmail` varchar(100) DEFAULT NULL,
+  `cliPassword` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`cliNo`),
+  KEY `companyNo` (`companyNo`),
+  CONSTRAINT `client_ibfk_1` FOREIGN KEY (`companyNo`) REFERENCES `company` (`companyNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+

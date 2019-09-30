@@ -1,5 +1,7 @@
 package survey.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import survey.model.cliVO;
+import survey.model.companyVO;
+import survey.model.surveyVO;
 import survey.model.userVO;
+import survey.service.CompanyService;
 import survey.service.MasterService;
+import survey.service.SurveyService;
 
 
 @Controller
@@ -20,6 +29,12 @@ public class MasterController {
 	
 	@Autowired
 	MasterService masterService;
+	
+	@Autowired
+	CompanyService companyService;
+	
+	@Autowired
+	SurveyService surveyService;
 	
 	@RequestMapping(value="/main", method= {RequestMethod.GET,RequestMethod.POST})
 	public String main() {
@@ -32,16 +47,44 @@ public class MasterController {
 		
 		System.out.println("로그인 컨트롤러");
 		System.out.println(userVo);
-		//return "redirect:/cateEdit/";
 		userVO authUser =  masterService.checkLogin(userVo);
 		
 		if (authUser != null) {
 			session.setAttribute("authUser", authUser);
 			return "redirect:/cateEdit/";
 		} else {
-			return "redirect:/master/main?result=fail";
+			return "redirect:/master/main?result=fail&master=fail";
 		}
 			
+		
+	}
+	
+	@RequestMapping(value="/cliLogin", method= {RequestMethod.GET,RequestMethod.POST})
+	public String cliLogin(@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo, Model model) {
+		model.addAttribute("quesFormGroupNo", quesFormGroupNo);
+		List<companyVO> companyVO = companyService.getCompanyList();
+		model.addAttribute("companyVO", companyVO);
+		return "master/cliLogin";
+		
+	}
+	
+	@RequestMapping(value="/cliLoginCheck", method= {RequestMethod.GET,RequestMethod.POST})
+	public String cliLoginCheck(@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo, @ModelAttribute cliVO cliVo,Model model) {
+		
+		cliVO authUser = masterService.cliLoginCheck(cliVo);
+		System.out.println(cliVo);
+		if (authUser != null) {
+			List<surveyVO> surveyVo = surveyService.getQuesList(quesFormGroupNo);
+			cliVO company = companyService.getCompany(cliVo);
+			model.addAttribute("quesFormGroupNo", quesFormGroupNo);
+			model.addAttribute("company", company);
+			model.addAttribute("surveyVo", surveyVo);
+			return "master/cliSurvey";
+		} else {
+			model.addAttribute("quesFormGroupNo", quesFormGroupNo);
+			model.addAttribute("cliVo", cliVo);
+			return "redirect:/master/cliLogin?result=fail";
+		}
 		
 	}
 	

@@ -12,124 +12,7 @@
 	  </div>
 	  <div class="modal-body">
 			<div class="col-lg">
-				<div style = "width: 100%; height:150px; background-color: #eee;margin-bottom: 30px;">
-					<div style = "margin-top: 20px;margin-bottom: 20px;margin-left: 10%;padding-top: 55px;border-top-width: 30px;">
-						 <table  style="width: 500px;float:left;">
-							<tr>
-								<th style = "font-size:1.5rem;width: 80px;color: inherit;">증권사 : </th>
-								<td id = "cliName" style = "font-size:3rem;"></td>
-								<th style = "font-size:1.5rem;width: 80px;">담당자 : </th>
-								<td id = "cliManager" style = "font-size:3rem;color: inherit;"></td>
-							</tr>
-						 </table>
-					</div>
-				</div>
-				<h4>문의요청시 응대가 빨랐나요?</h4>
-				<table class="table" style="margin-bottom: 35px;">
-					<tbody>
-						<tr>
-							<td><input type="radio" name="multiple" value="1" />아주 나쁨</td>
-							<td><input type="radio" name="multiple" value="2" />나쁨</td>
-							<td><input type="radio" name="multiple" value="3" />보통</td>
-							<td><input type="radio" name="multiple" value="4" />좋음</td>
-							<td><input type="radio" name="multiple" value="5" />아주 좋음</td>
-						</tr>
-					</tbody>
-				</table>
-
-			  <h4>직원은 친절하게 응대했나요?</h4>
-			  <table class="table" style="margin-bottom: 35px;">
-					<tbody>
-						<tr>
-							<td><input type="radio" name="multiple" value="1" />아주 나쁨</td>
-							<td><input type="radio" name="multiple" value="2" />나쁨</td>
-							<td><input type="radio" name="multiple" value="3" />보통</td>
-							<td><input type="radio" name="multiple" value="4" />좋음</td>
-							<td><input type="radio" name="multiple" value="5" />아주 좋음</td>
-						</tr>
-					</tbody>
-				</table>
-
-			  <h4>응대받은 내용이 도움이 되었나요?</h4>
-			 <table class="table" style="margin-bottom: 35px;">
-					<tbody>
-						<tr>
-							<td><input type="radio" name="multiple" value="1" />아주 나쁨</td>
-							<td><input type="radio" name="multiple" value="2" />나쁨</td>
-							<td><input type="radio" name="multiple" value="3" />보통</td>
-							<td><input type="radio" name="multiple" value="4" />좋음</td>
-							<td><input type="radio" name="multiple" value="5" />아주 좋음</td>
-						</tr>
-					</tbody>
-				</table>
-
-			  <h4>다시 같은 직원에게 업무요청을 하고싶은가요?</h4>
-			  <table class="table" style="margin-bottom: 35px;">
-					<tbody>
-						<tr>
-							<td><input type="radio" name="multiple" value="1" />아주 나쁨</td>
-							<td><input type="radio" name="multiple" value="2" />나쁨</td>
-							<td><input type="radio" name="multiple" value="3" />보통</td>
-							<td><input type="radio" name="multiple" value="4" />좋음</td>
-							<td><input type="radio" name="multiple" value="5" />아주 좋음</td>
-						</tr>
-					</tbody>
-				</table>
-
-				<h4>문의요청시 응대가 빨랐나요?</h4>
-				<table class="table" style="margin-bottom: 35px;">
-					<tbody>
-						<tr>
-							<td><input type="radio" name="multiple" value="1" />아주 나쁨</td>
-							<td><input type="radio" name="multiple" value="2" />나쁨</td>
-							<td><input type="radio" name="multiple" value="3" />보통</td>
-							<td><input type="radio" name="multiple" value="4" />좋음</td>
-							<td><input type="radio" name="multiple" value="5" />아주 좋음</td>
-						</tr>
-					</tbody>
-				</table>
-
-				 <h4>직원은 친절하게 응대했나요?</h4>
-			  <table class="table" style="margin-bottom: 35px;">
-					<tbody>
-						<tr>
-							<td><input type="radio" name="multiple" value="1" />아주 나쁨</td>
-							<td><input type="radio" name="multiple" value="2" />나쁨</td>
-							<td><input type="radio" name="multiple" value="3" />보통</td>
-							<td><input type="radio" name="multiple" value="4" />좋음</td>
-							<td><input type="radio" name="multiple" value="5" />아주 좋음</td>
-						</tr>
-					</tbody>
-				</table>
-
-				 <h4>응대받은 내용이 도움이 되었나요?</h4>
-			 <table class="table" style="margin-bottom: 35px;">
-					<tbody>
-						<tr>
-							<td><input type="radio" name="multiple" value="1" />아주 나쁨</td>
-							<td><input type="radio" name="multiple" value="2" />나쁨</td>
-							<td><input type="radio" name="multiple" value="3" />보통</td>
-							<td><input type="radio" name="multiple" value="4" />좋음</td>
-							<td><input type="radio" name="multiple" value="5" />아주 좋음</td>
-						</tr>
-					</tbody>
-				</table>
-
-			  <h4>다시 같은 직원에게 업무요청을 하고싶은가요?</h4>
-			  <table class="table" style="margin-bottom: 35px;">
-					<tbody>
-						<tr>
-							<td><input type="radio" name="multiple" value="1" />아주 나쁨</td>
-							<td><input type="radio" name="multiple" value="2" />나쁨</td>
-							<td><input type="radio" name="multiple" value="3" />보통</td>
-							<td><input type="radio" name="multiple" value="4" />좋음</td>
-							<td><input type="radio" name="multiple" value="5" />아주 좋음</td>
-						</tr>
-					</tbody>
-				</table>
-
-			  <h4>하고싶은 말이 있나요?</h4>
-			  <p><textarea class="form-control" type="text" style = "width: 90%; height:100px;"></textarea>
+			
 		  </div>
 	  </div>
 	  <div class="modal-footer">
@@ -201,19 +84,19 @@
 			  contentType: 'application/json',
 			  success: function (survey) {
 			  	
-			  	var modalData = "<div class=\"col-lg\">" +
-						"<div style = \"width: 100%; height:150px; background-color: #eee;margin-bottom: 30px;\">" +
-						"<div style = \"margin-top: 20px;margin-bottom: 20px;margin-left: 10%;padding-top: 55px;border-top-width: 30px;\">" +
-						"<table  style=\"width: 500px;float:left;\">" +
-						"<tr>" +
-						"<th style = \"font-size:1.5rem;width: 80px;color: inherit;\">증권사 : " + survey[0].companyName + "</th>" +
-						"<td id = \"cliName\" style = \"font-size:3rem;\"></td>" +
-						"<th style = \"font-size:1.5rem;width: 80px;\">담당자 : " + survey[0].manager + "</th>" +
-						"<td id = \"cliManager\" style = \"font-size:3rem;color: inherit;\"></td>" +
-						"</tr>\n" +
-						"</table>\n" +
-						"</div>\n" +
-						"</div>";
+			  	var modalData = "<div style = 'width: 100%; height:150px; background-color: #eee;margin-bottom: 30px;'>" +
+								"<div style = 'margin-top: 20px;margin-bottom: 20px;margin-left: 10%;padding-top: 55px;border-top-width: 30px;'>" +
+								"<table  style='width: 500px;float:left;'>" +
+								"<tr>" +
+								"<th style = 'font-size:1.5rem;width: 80px;color: inherit;'>증권사 : </th>" +
+								"<td id = \"cliName\" style = \"font-size:3rem;\">" + survey[0].companyName + "</td>" +
+								"<th style = \"font-size:1.5rem;width: 80px;\">담당자 : </th>" +
+								"<td id = \"cliManager\" style = \"font-size:3rem;color: inherit;\">" + survey[0].manager + "</td>" +
+								"</tr>\n" +
+								"</table>\n" +
+								"</div>\n" +
+								"</div>";
+								
 			  	
 				$.each(survey, function(i,o) {
 					console.log(o);
@@ -223,22 +106,22 @@
 								"<table class=\"table\" style=\"margin-bottom: 35px;\">" +
 								"<tbody>" +
 								"<tr>" +
-								"<td><input type=\"radio\" value=\"1\" " + (o.satisVal==1?"checked":"") + "/>아주 나쁨</td>" +
-								"<td><input type=\"radio\" value=\"2\" " + (o.satisVal==2?"checked":"") + "/>나쁨</td>" +
-								"<td><input type=\"radio\" value=\"3\" " + (o.satisVal==3?"checked":"") + "/>보통</td>" +
-								"<td><input type=\"radio\" value=\"4\" " + (o.satisVal==4?"checked":"") + "/>좋음</td>" +
-								"<td><input type=\"radio\" value=\"5\" " + (o.satisVal==5?"checked":"") + "/>아주 좋음</td>" +
+								"<td><input type=\"radio\" onclick=\"return(false)\" value=\"1\" " + (o.satisVal==1?"checked":"") + "/>아주 나쁨</td>" +
+								"<td><input type=\"radio\" onclick=\"return(false)\" value=\"2\" " + (o.satisVal==2?"checked":"") + "/>나쁨</td>" +
+								"<td><input type=\"radio\" onclick=\"return(false)\" value=\"3\" " + (o.satisVal==3?"checked":"") + "/>보통</td>" +
+								"<td><input type=\"radio\" onclick=\"return(false)\" value=\"4\" " + (o.satisVal==4?"checked":"") + "/>좋음</td>" +
+								"<td><input type=\"radio\" onclick=\"return(false)\" value=\"5\" " + (o.satisVal==5?"checked":"") + "/>아주 좋음</td>" +
 								"</tr>" +
 								"</tbody>" +
 								"</table>";
 						if (o.satisVal < 3) {
-							modalData += "<p><textarea class=\"form-control\" type=\"text\" style = \"width: 90%; height:100px;\">" +
+							modalData += "<p><textarea readonly class=\"form-control\" type=\"text\" style = \"width: 90%; height:100px;\">" +
 									o.dissatisReason +
 									"</textarea></p>";
 						}
 					} else {
 						modalData += "<h4>" + o.quesName + "</h4>" +
-								"<p><textarea class=\"form-control\" type=\"text\" style = \"width: 90%; height:100px;\">" +
+								"<p><textarea readonly class=\"form-control\" type=\"text\" style = \"width: 90%; height:100px;\">" +
 								o.answer +
 								"</textarea></p>";
 					}

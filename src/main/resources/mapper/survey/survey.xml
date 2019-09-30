@@ -43,6 +43,16 @@
     
     
     </insert>
+    
+    <select id="duplCheck" parameterType="survey.model.surveyVO" resultType="int">
+    	<![CDATA[
+			SELECT COUNT(companyNo)
+			FROM survey
+			WHERE cateName = #{cateName}
+			AND surveyGroupNo = #{quesFormGroupNo}
+			AND companyNo = #{companyNo}
+		]]>
+    </select>
 
 
 

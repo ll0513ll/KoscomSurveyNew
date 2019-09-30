@@ -35,10 +35,20 @@
 
 	<div class="container">
 
-		<form class="form-signin" style="margin-top: 10%;" action='/master/login'>
-			<h2 class="form-signin-heading">관리자 로그인</h2>
+		<form class="form-signin" style="margin-top: 10%;" action='/master/cliLoginCheck'>
+			<h2 class="form-signin-heading">회원기업 로그인</h2>
+			<input type="hidden" name="quesFormGroupNo" value="${quesFormGroupNo}">
+			<p><select class="form-control" id="selectCompany" name="companyNo"
+                       style="margin: 0 auto;">
+                <option id="choicCompany">회사를 선택하세요.</option>
+                <c:forEach var="vo" items="${companyVO}" varStatus="status">
+                    <c:set var="index" value="${index + 1}"/>
+                    <option name="selCompanyName[${index}]" value="${vo.companyNo}">${vo.companyName}</option>
+                    <!-- <p><input type="text" id="companyName" name = "companyName" placeholder="회사명" style = "width: 250px;height:38px;font-size:1.5rem;"></p> -->
+                </c:forEach>
+            </select></p>
 			<label for="inputEmail" class="sr-only">Email address</label> 
-			<input type="email" id="inputEmail" name="email" class="form-control"placeholder="Email address" required="" autofocus=""> 
+			<input type="text" id="inputEmail" name="id" class="form-control"required="" autofocus=""> 
 			<label for="inputPassword" class="sr-only">Password</label> 
 			<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
 			<c:if test="${param.result eq 'fail' }">
@@ -60,48 +70,7 @@
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
-	<script type="text/javascript">
-	/* $(document).ready(function () {
-	
-		
-	});
-	} */
-/* 	//로그인 버튼 누를때
-	 $("#login").on('click',function () {
-		  
-		  var surveyVo = $("#inputEmail").val(),
-		  				 $("#inputPassword").val()
-		  				 
-		  console.log(surveyVo);
-		  
-		  $.ajax({
-	          url: "/master/login",
-	          type: "post",
-	          data: {"surveyVo": surveyVo},
-	          dataType: "json",
-	          success: function (result) {
-	              console.log(result);
-	             if(result == true){
-	            	 
-	            	 location.href = "/quesEdit/quesList"
-	             }
-	             else{
-	            	 
-	            	 alert("로그인 실패!");
-	             }
-	             
-	              
 
-	          },
-	          error: function (request, status, error) {
-	        	  alert("email 과 Password를 다시 확인해 주세요");
-	          }
-
-	      })  
-		  
-	 }); */
-	
-	</script>
 
 </body>
 </html>

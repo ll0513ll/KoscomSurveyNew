@@ -12,4 +12,13 @@
 		 ]]>
 	</select>
 	
+	<select id="cliLoginCheck" parameterType="survey.model.cliVO" resultType="survey.model.cliVO">
+		 <![CDATA[
+		 SELECT id,password
+		 FROM client
+		 WHERE id = #{id}
+		 AND password = #{password}
+		 ]]>
+	</select>
+	
 </mapper>

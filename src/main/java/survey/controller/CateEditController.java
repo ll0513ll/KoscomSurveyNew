@@ -61,6 +61,7 @@ public class CateEditController {
 	@RequestMapping(value="/cateUpdate", method= {RequestMethod.GET,RequestMethod.POST})
 	public int cateUpdate(@ModelAttribute cateVO cateVO) throws Exception{
 
+		System.out.println(cateVO);
 		return cateEditService.cateUpdate(cateVO);
 	
 	}

@@ -16,6 +16,7 @@
 			select
 				surveyGroupNo,
 				companyNo,
+				cateName,
 				max(surveyDate) as surveyDate,
 				max(manager) as manager,
 				(select companyName from company where survey.companyNo = company.companyNo) as companyName,
