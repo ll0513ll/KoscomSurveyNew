@@ -4,7 +4,7 @@
 </div>
 <!-- /row -->
 <footer class="footer">
-    <p>Koscom 만족도 설문 조사</p>
+    <p style="text-align: center;margin-top: 20px;">Koscom 만족도 설문 조사</p>
 </footer>
 
 </div> <!-- /container -->

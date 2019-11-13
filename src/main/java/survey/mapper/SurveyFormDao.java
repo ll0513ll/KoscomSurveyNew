@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import survey.model.SurveyFormGroupVo;
 import survey.model.SurveyFormVo;
-import survey.model.quesVO;
 
 @Repository
 public class SurveyFormDao {
@@ -20,7 +19,6 @@ public class SurveyFormDao {
     }
 
     public int surveyFormAdd(SurveyFormVo surveyFormVo) {
-    	System.out.println("Survey폼 추가 다오");
         return sqlSession.insert("surveyFormAdd", surveyFormVo);
     }
     

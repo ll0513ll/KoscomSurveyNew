@@ -17,7 +17,6 @@
 	  </div>
 	  <div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 	  </div>
 	</div>
   </div>
@@ -58,8 +57,6 @@
 			</table>
 
 			 <div class = "buttonBox" style="margin-left: 45%;margin-top:5%;margin-bottom: 5%;">
-
-			<!-- <button type="button"  onclick="location.href='/master/survey_del'"  class="btn btn-default" style="width:80px;">삭제</button> -->
 			 </div>
 	  </div>
 
@@ -99,7 +96,6 @@
 								
 			  	
 				$.each(survey, function(i,o) {
-					console.log(o);
 
 					if (o.type == 1) {
 						modalData += "<h4>" + o.quesName + "</h4>" +
@@ -143,8 +139,8 @@
   
   $("#getSurvey").on('click',function () {
 	  
+	  index = 1;
 	  selectSurveyList();
-	  
   });
   
   //선택된 설문조사 완료 설문 가져오기
@@ -159,7 +155,6 @@
           data: {"surveyNo": surveyNo},
           dataType: "json",
           success: function (result) {
-              console.log(result);
               $("#finshTbody").empty();
               $("#selectSurvey").text("");
               $("#selectSurvey").text(result[0].cateName);
@@ -183,7 +178,6 @@
   var index = 1;
 //확인하기 버튼처리 후 아래 내역 그리기.
   function finshSurveyList(result){
-  	console.log(result);
   	var str1 = "<tr>"
 			 + "<input type='hidden' name='surveyGroupNo' value='"+ result.surveyGroupNo +"'>"
 			 + "<input type='hidden' name='companyNo' value='"+ result.companyNo +"'>"

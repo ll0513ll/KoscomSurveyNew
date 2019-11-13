@@ -31,7 +31,9 @@
    			<td colspan="2"style="background-color: #f8f5f5;">설문 기간</td>
 		</tr>
 		<tr>
-			<td name="urlVal" style="padding-top: 20px;"><a class="sendUrlList" target="_blank" href="/survey/?quesFormGroupNo=${vo.surveyFormGroupNo}&master=true">http://localhost:8080/surveyURL/?surveyFormGroupNo=${vo.surveyFormGroupNo}</a>
+			<td name="urlVal" style="padding-top: 20px;">
+				<input type="hidden" class = "GroupNo" value = "${vo.surveyFormGroupNo}">
+				<a class="sendUrlList" target="_blank" href="/survey/?quesFormGroupNo=${vo.surveyFormGroupNo}&master=true">http://localhost:8080/surveyURL/?surveyFormGroupNo=${vo.surveyFormGroupNo}</a>
 			</td>
 			<td name="copyBtnTd">
 				<button type="button" name="copyBtn" class="btn btn-default btn-xs" style="margin-top: 5px; margin-left: 5px;">복사</button>
@@ -94,7 +96,7 @@
 		$("body").append(copyinfo);
 		copyinfo.value = $(this).parent().prev().text();
 		serveyUrl = copyinfo.value;
-		console.log(serveyUrl);
+		
 		
 		copyinfo.select();
 		document.execCommand("copy");
@@ -115,13 +117,13 @@
 	});
 	
 	$("button[name=addBtn]").on("click", function () {
-		console.log($(this).parent().prev().children(".date").val());
+		
 		var report = {endDate : $(this).parent().prev().children(".date").val(),
 					  startDate : $(this).val(),
-					  surveyFormGroupNo : $("input[name=surveyNo]").val()
+					  surveyFormGroupNo : $(this).parents("tr").find(".GroupNo").val()
 					 }
+					  
 		
-		console.log(report);
 	 	
 		$.ajax({
             url: "/surveyURL/addDate",

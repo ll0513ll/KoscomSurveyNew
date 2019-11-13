@@ -34,8 +34,13 @@
 </head>
 
 <body>
-
 <div class="container" style="margin-top:30px;">
+<div class="navbar navbar-inverse" style="background-color: white;border:none;">
+    <h4 class="text-muted">
+        <img src="/assets/images/KoscomLogo.PNG"
+             style="width: 14rem; height: 4rem;flot:left;margin-bottom: 1%;">
+    </h4>
+</div>
 <c:set var="index" value="0"/>
 <c:set var="count" value="0"/>
 <!-- Modal -->
@@ -64,7 +69,7 @@
 </div>
 
 
-<div class="row marketing">
+<div class="row marketing" style=" margin-top: 20px;">
     <div class="col-lg">
         <form method="post" class="quesList-form" id="formname1">
             <div class="jumbotron" style="text-align:center; display: table;width: 100%;">
@@ -76,15 +81,6 @@
                   	<input type="hidden" name="companyNo" id="selectCompany" value="${company.companyNo}">
                   	<input type="text"  readonly id="cliCompany" name="companyName" value="&nbsp&nbsp&nbsp ${company.companyName}" style="width: 250px;height:38px;font-size:1.5rem;">
                   </p> 
-                <%-- <p><select class="form-control" id="selectCompany" name="companyNo"
-                           style="width: 250px; margin: 0 auto;">
-                    <option id="choicCompany">회사를 선택하세요.</option>
-                    <c:forEach var="vo" items="${companyVO}" varStatus="status">
-                        <c:set var="index" value="${index + 1}"/>
-                        <option name="selCompanyName[${index}]" value="${vo.companyNo}">${vo.companyName}</option>
-                        <!-- <p><input type="text" id="companyName" name = "companyName" placeholder="회사명" style = "width: 250px;height:38px;font-size:1.5rem;"></p> -->
-                    </c:forEach>
-                </select></p> --%>
                 <p><input type="text" id="manager" name="manager" placeholder="&nbsp&nbsp&nbsp담당자"
                           style="width: 250px;height:38px;font-size:1.5rem;"></p>
             </div>
@@ -217,9 +213,6 @@
 
     function formSubmit() {
 
-        console.log("새로운 스크립트");
-
-        //var report = $("#formname1").serializeObject();
 
         jQuery.fn.serializeObject = function () {
             var obj = null;
@@ -231,7 +224,7 @@
                         jQuery.each(arr, function () {
                             obj[this.name] = this.value;
                         });
-                    }//if ( arr ) {
+                    }
                 }
             } catch (e) {
                 alert(e.message);
@@ -242,7 +235,6 @@
         };
 
         var report = $("#formname1").serializeObject();
-        console.log(report);
 
         $.ajax({
             url: '/survey/surveyAdd',
@@ -251,8 +243,6 @@
             dataType: 'jason',
             success: function (result) {
 					if(result==1){
-					console.log(result);
-	                console.log("ajax 저장완료!");
 	                surveyEnd();
 
 					}

@@ -33,8 +33,6 @@ public class SurveyUrlDao {
 	}
 	
 	public int addDate(SurveyFormGroupVo SurveyFormGroupVo) {
-		System.out.println("날짜저장 다오");
-		System.out.println(SurveyFormGroupVo);
 		return sqlSession.update("addDate", SurveyFormGroupVo);
 	}
 

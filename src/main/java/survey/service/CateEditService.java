@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import survey.mapper.CateEditDao;
 import survey.model.cateVO;
@@ -30,7 +29,6 @@ public class CateEditService {
 	
 	public int delCate(ArrayList<String> delCateList) throws Exception{
 		
-		System.out.println(delCateList);
 		
 		return cateEditDao.delCate(delCateList);
 	}

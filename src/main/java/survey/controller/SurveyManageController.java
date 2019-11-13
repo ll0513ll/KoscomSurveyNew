@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import survey.model.quesVO;
 import survey.model.surveyVO;
 import survey.service.SurveyManageService;
 

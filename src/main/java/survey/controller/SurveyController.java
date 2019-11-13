@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import survey.model.cliVO;
 import survey.model.companyVO;
 import survey.model.surveyParamVo;
 import survey.model.surveyVO;
@@ -55,31 +54,11 @@ public class SurveyController {
 		return "master/cliSurvey";
 	}
 	
-	/*@RequestMapping(value="aftercheckSurvey", method= {RequestMethod.GET,RequestMethod.POST})
-	public String cliSurvey(@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo,
-							@RequestParam(value="cliVo",required=false) cliVO cliVo,Model model)throws Exception {
-		
-		System.out.println("고객로그인하고 설문지 접속");
-		System.out.println(quesFormGroupNo);
-		List<surveyVO> surveyVo = surveyService.getQuesList(quesFormGroupNo);
-		System.out.println(cliVo);
-		String resultCompanyName = companyService.getCompany(cliVo);
-		System.out.println(resultCompanyName);
-		model.addAttribute("surveyVo", surveyVo);
-		model.addAttribute("companyName", resultCompanyName);
-		model.addAttribute("quesFormGroupNo", quesFormGroupNo);
-		
-		return "master/cliSurvey";
-	}*/
-	
 	
 	@ResponseBody
 	@RequestMapping(value="surveyAdd", method= {RequestMethod.GET,RequestMethod.POST})
 	public int surveyAdd(@RequestBody surveyParamVo surveyParam ) {
-		System.out.println("설문지 하나 만들었다");
-		System.out.println(surveyParam);
 		int result = surveyService.surveyAdd(surveyParam);
-		System.out.println(result);
 		
 		return result;
 	}
@@ -104,7 +83,6 @@ public class SurveyController {
 				Method[] methods = objClass.getClass().getDeclaredMethods();
 				for(int i=0;i<=methods.length-1;i++){
 					if(methodString.equals(methods[i].getName())){
-						System.out.println("invoke : "+methodString);
 						methods[i].invoke(objClass, map.get(keyAttribute));
 					}
 				}

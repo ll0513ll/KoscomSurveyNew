@@ -1,6 +1,7 @@
 package survey.mapper;
 
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,9 +21,14 @@ public class MasterDao {
 		return sqlSession.selectOne("checkLogin", userVo);
 	}
 	
-	public cliVO cliLoginCheck(cliVO cliVo) {
+	public cliVO cliLoginCheck(cliVO cliVo) { 
 		
 		return sqlSession.selectOne("cliLoginCheck", cliVo);
+	}
+	
+	public int checkDudate(int quesFormGroupNo) {
+		
+		return sqlSession.selectOne("checkDudate", quesFormGroupNo);
 	}
 	
 

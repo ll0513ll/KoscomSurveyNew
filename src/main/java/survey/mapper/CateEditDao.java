@@ -15,7 +15,6 @@ public class CateEditDao {
 	 @Autowired SqlSession sqlSession;
 	 
 	 public List<cateVO> getCateList(){
-		 //return surveyMapper.getCateList();
 		List<cateVO> cateList = sqlSession.selectList("getCateList");
 		return cateList;
 	 }

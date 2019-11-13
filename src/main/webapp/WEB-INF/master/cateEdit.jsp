@@ -85,7 +85,6 @@
 	});
     //삭제버튼 누를때
     $("#cate_del").click(function () {
-        console.log("삭제모달");
         var cateNo = [];
         $("input[name=cateName]:checked").each(function (i, e) {
             cateNo[i] = $(this).val();
@@ -103,14 +102,11 @@
 
     //추가버튼 누를때
     $("#addBtnDiv").on("click", "#addBtn", function () {
-        console.log("추가버튼됨");
 
         report = {
             cateName: $("#cateName").val(),
             cateInfo: $("#cateInfo").val()
         };
-
-        console.log(report);
 
         $.ajax({
             url: "/cateEdit/addCate",
@@ -134,14 +130,11 @@
     // 카테고리 추가 후 카테고리 리스트 호출.
     function getCateList() {
 
-        console.log("추가 후 새로고침");
-
         $.ajax({
             url: "/cateEdit/getCateList",
             type: "get",
             dataType: "json",
             success: function (cateList) {
-				console.log(cateList);
                 $("#cateListTable").empty();
                 $("input[name='addCateName']").val("")
                 $("textarea[name='addCateInfo']").val("")
@@ -175,14 +168,10 @@
     //삭제 모달내부 삭제버튼 누를때
     function delCate() {
 
-        console.log("삭제버튼 누르고 스크립트");
         var delCateList = [];
-        //cate_no= $("input[name=modalDel]").val();
         $("input[name=cateName]:checked").each(function (i, e) {
             delCateList[i] = $(this).val();
         });
-        //cate_no = $("input[name=modalDel]").val();
-        console.log(delCateList);
 
         $.ajax({
             url: "/cateEdit/delCate",
@@ -190,7 +179,6 @@
             data: {"delCateList": delCateList},
             dataType: "json",
             success: function (result) {
-                console.log(result)
                 if (result >= 1) {
                     $("#myModal").modal("hide")
                     getCateList();
@@ -198,10 +186,7 @@
             },
             error: function () {
                 alert("카테고리 삭제에 실패했습니다.");
-                //$(".alert").show();
-                /* $(“.alert”).on(“close.bs.alert”, function() {
-                    alert(“이벤트 실행됨”);
-                  }); */
+                
             }
         })
 
@@ -209,21 +194,17 @@
 	
     //수정버튼 누를때
     $("#editBtn").click(function () {
-    	//<input class="Qchoice" name="cateName" type="checkbox" value="${vo.cateNo}">&nbsp;&nbsp;&nbsp;${vo.cateName}
         var choiceCate = $("input[name=cateName]:checked").parent().text();
-        console.log(choiceCate);
         choiceCate.replace(/^\s*/, "") ;
         
         var cateInfo = $("input[name=cateName]:checked").siblings().val();
-        console.log(cateInfo);
         
         var count = $("input[name=cateName]:checked").length;
         
         var cateNo = $("input[name=cateName]:checked").val();
-        console.log($("input[name=cateName]:checked").val());
         
         if(count >= 2){
-        	alert("제목 수정은 한번에 하나씩만 가능합니다.");
+        	alert("하나씩 수정 가능합니다.");
         	return;
         }
 
@@ -246,7 +227,6 @@
     			cateNo: $(this).val(),
     			cateName: $("#cateName").val()
     	}
-    	console.log(report);
     	
     	$.ajax({
             url: "/cateEdit/cateUpdate",
@@ -257,7 +237,6 @@
                 console.log(result)
                 if (result >= 1) {
                 	alert("제목이 수정되었습니다.");
-                	//location.reload();
                 	getCateList();
                 }
             },

@@ -36,6 +36,7 @@ public class MasterController {
 	@Autowired
 	SurveyService surveyService;
 	
+	
 	@RequestMapping(value="/main", method= {RequestMethod.GET,RequestMethod.POST})
 	public String main() {
 		return "master/login";
@@ -45,8 +46,6 @@ public class MasterController {
 	@RequestMapping(value="/login", method= {RequestMethod.GET,RequestMethod.POST})
 	public String login(@ModelAttribute userVO userVo,HttpSession session) {
 		
-		System.out.println("로그인 컨트롤러");
-		System.out.println(userVo);
 		userVO authUser =  masterService.checkLogin(userVo);
 		
 		if (authUser != null) {
@@ -62,8 +61,13 @@ public class MasterController {
 	@RequestMapping(value="/cliLogin", method= {RequestMethod.GET,RequestMethod.POST})
 	public String cliLogin(@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo, Model model) {
 		model.addAttribute("quesFormGroupNo", quesFormGroupNo);
+		boolean dudate = masterService.checkDudate(quesFormGroupNo);
 		List<companyVO> companyVO = companyService.getCompanyList();
 		model.addAttribute("companyVO", companyVO);
+		if(dudate == false) {
+			return "master/close";//같은 화면으로 종료안내 페이지 만들기
+		}
+		
 		return "master/cliLogin";
 		
 	}
@@ -72,7 +76,6 @@ public class MasterController {
 	public String cliLoginCheck(@RequestParam(value="quesFormGroupNo",required=false) int quesFormGroupNo, @ModelAttribute cliVO cliVo,Model model) {
 		
 		cliVO authUser = masterService.cliLoginCheck(cliVo);
-		System.out.println(cliVo);
 		if (authUser != null) {
 			List<surveyVO> surveyVo = surveyService.getQuesList(quesFormGroupNo);
 			cliVO company = companyService.getCompany(cliVo);
@@ -92,8 +95,6 @@ public class MasterController {
 	@RequestMapping(value="/surveyManage", method= {RequestMethod.GET,RequestMethod.POST})
 	public String surveyManage(String cliName,Model model) {
 		
-		/*cliName = "키움증권";
-		model.addAttribute("cliName", cliName);*/
 		return "master/surveyManage";
 	}
 	

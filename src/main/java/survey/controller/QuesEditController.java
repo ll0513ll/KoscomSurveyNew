@@ -35,9 +35,6 @@ public class QuesEditController {
 		List<quesVO> quesList = quesService.getQuesList();
 		model.addAttribute("quesList", quesList);
 
-		//cateVO cateVo = quesService.getCateName(cateName);
-		//model.addAttribute("cateVo", cateVo);
-		
 		List<cateVO> cateList = cateEditService.getCateList();
 		model.addAttribute("cateList",cateList);
 
@@ -85,10 +82,7 @@ public class QuesEditController {
 	@ResponseBody
 	@RequestMapping(value="/quesUpdate", method= {RequestMethod.GET,RequestMethod.POST})
 	public int quesUpdate(@ModelAttribute quesVO quesVO) {
-		
-		System.out.println("질문수정");
 
-		System.out.println(quesVO);
 		return quesService.quesUpdate(quesVO);
 	}
 

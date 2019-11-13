@@ -21,15 +21,11 @@ public class SurveyDao {
 	}
 	
 	public int duplCheck(surveyParamVo surveyParam) {
-		System.out.println("설문 기참여 여부 체크");
 		return sqlSession.selectOne("duplCheck",surveyParam);
 	}
 	
 	public int surveyAdd(surveyVO surveyVo) {
 		 
-		System.out.println("설문완료 추가 다오");
-		System.out.println(surveyVo);
-			
 	    return sqlSession.insert("surveyAdd",surveyVo);
 		
 	}

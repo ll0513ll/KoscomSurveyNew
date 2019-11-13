@@ -21,4 +21,13 @@
 		 ]]>
 	</select>
 	
+	<select id="checkDudate" parameterType="int" resultType="int">
+		 <![CDATA[
+		 SELECT COUNT(*)
+		 FROM surveyformgroup
+		 WHERE surveyFormGroupNo = #{quesFormGroupNo}
+		 AND endDate > NOW()
+		 ]]>
+	</select>
+	
 </mapper>

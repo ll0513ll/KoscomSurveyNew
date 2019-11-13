@@ -159,8 +159,8 @@
             </table>
         </div>
         <div class="buttonBox" style="float:right;padding-top: 25px;">
-	        <button type="button" class="btn btn-default" id="editBtn">수정</button>
-	        <button type="button" id="ques_del" class="btn btn-default" style="margin-left: 10px;">삭제</button>
+	        <button type="button" class="btn btn-primary" id="editBtn">수정</button>
+	        <button type="button" id="ques_del" class="btn btn-danger" style="margin-left: 10px;">삭제</button>
 		</div>
 	 </div>
         <div class="jumbotron">
@@ -226,7 +226,7 @@
 
         //추가버튼 누를때
         $("#addBtn").on("click", function () {
-            console.log("추가버튼됨");
+           
             report = {
                 quesName: $("#Qtitle").val(),
                 type: $("input[name=Qtype]:checked").val()
@@ -254,7 +254,7 @@
         $(".quesSel").on("click", function () {
         	
         	var quesSelTd = $(this).val();
-        	var quesSelTd = "<tr class='selList'>"
+        	var quesSelTd = "<tr class='selList '>"
         					+ "<input type='hidden' name='finalQues' value='" + $(this).val() + "'>"
         					+ "<input type='hidden' name='finalQtype' value='" + $(this).prev().val() + "'>"
         					+ "<td class='ui-widget-content td-clear'>" + $(this).val() + "</td>"
@@ -274,16 +274,32 @@
         
         $( document ).on( "click", ".up", function () {
         	if ($(this).closest("tr").prev().html() == undefined) {
-        		alert("더이상 위로 이동할수 없습니다.");	
+        		alert("더이상 위로 이동할수 없습니다.");
+        		$(this).parent().prev().css("background-color","white");
+            	$(this).parent().css("background-color","white");
         	}
-        	$(this).closest("tr").prev().before($(this).closest("tr"));
+        	else{
+	        	$(this).closest("tr").prev().before($(this).closest("tr"));
+	        	$(this).parent().prev().css("background-color","white");
+	        	$(this).parent().css("background-color","white");
+	        	$(this).parent().prev().css("background-color","#ffeecc");
+	        	$(this).parent().css("background-color","#ffeecc");
+        	}
         });
         
         $( document ).on( "click", ".down", function () {
         	if ($(this).closest("tr").next().html() == undefined) {
-        		alert("더이상 위로 이동할수 없습니다.");	
+        		alert("더이상 아래로 이동할수 없습니다.");	
+        		$(this).parent().prev().css("background-color","white");
+            	$(this).parent().css("background-color","white");
         	}
-        	$(this).closest("tr").next().after($(this).closest("tr"));
+        	else{
+	        	$(this).closest("tr").next().after($(this).closest("tr"));
+	        	$(this).parent().prev().css("background-color","white");
+	        	$(this).parent().css("background-color","white");
+	        	$(this).parent().prev().css("background-color","#ffeecc");
+	        	$(this).parent().css("background-color","#ffeecc");
+        	}
         });
         
         $( document ).on( "click", ".delBtn", function () {
